@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/beams.png" type="Texture" id=1]
+[ext_resource path="res://scripts/enemy_bullet.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+
+[node name="enemy_bullet" type="Area2D"]
+position = Vector2( 1023, 543 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bullet" type="Sprite" parent="."]
+position = Vector2( 4.57764e-05, 2.86613 )
+scale = Vector2( 3.66667, 3.18929 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 35, 25, 24, 25 )
+region_filter_clip = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0.000102997, -0.133873 )
+shape = SubResource( 1 )
+
+[node name="visible" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.000164032, 0.366158 )
+scale = Vector2( 1, 1.85 )
+
+[connection signal="area_entered" from="." to="." method="_on_enemy_bullet_area_entered"]
+[connection signal="screen_exited" from="visible" to="." method="_on_visible_screen_exited"]
