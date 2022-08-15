@@ -94,9 +94,11 @@ func _on_enemy_timer_timeout():
 	
 
 func _on_player_pickup(body):
-	print(body.type)
+	#print(body.type)
 	Global.powerup_counter[body.type] += 1
-	print(Global.powerup_counter)
+	HUD.updatePowerups()
+	
+	#print(Global.powerup_counter)
 	#$HUD.update_cash(global.cash)
 	body.queue_free()
 	

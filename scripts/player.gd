@@ -6,7 +6,7 @@ signal pickup
 var rot_speed = Global.rot_level[Global.upgrade_level['rot']]
 var thrust = Global.thrust_level[Global.upgrade_level['thrust']]
 var max_vel = 400
-var friction = 0.65
+var friction = 0.05
 export var bullet = preload("res://scenes/player_bullet.tscn")
 onready var bullet_container = get_node("bullet_container")
 onready var gun_timer = get_node("gun_timer")
@@ -62,6 +62,7 @@ func setInputs(delta):
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 		get_node("exhaust").show()
+		
 	else:
 		acc = Vector2(0, 0)
 		get_node("exhaust").hide()
@@ -112,5 +113,5 @@ func _on_player_body_entered(body):
 			collectPowerup(body)
 			
 func collectPowerup(body):
-	print("body ",body)
+	#print("body ",body)
 	emit_signal("pickup", body)

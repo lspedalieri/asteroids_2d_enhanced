@@ -19,6 +19,7 @@ var upgrade_level = {
 	'thrust':1,
 	'fire_rate':1,
 	'rot':1,
+	'manouver':1,
 	'shield_regen':4,
 	'guns':1,
 	'shield':50

@@ -10,8 +10,8 @@ func _process(delta):
 	set_position(get_position() + vel * delta)
 	
 func start_at(dir, pos):
-	print(dir)
-	print(pos)
+	#print(dir)
+	#print(pos)
 	set_rotation(dir)
 	set_position(pos)
 	vel = Vector2(speed, 0).rotated(dir + PI/2)
