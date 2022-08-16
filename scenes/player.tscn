@@ -64,4 +64,38 @@ texture = ExtResource( 4 )
 position = Vector2( 0, 35 )
 frames = SubResource( 2 )
 
+[node name="back_exhaust1" type="AnimatedSprite" parent="."]
+position = Vector2( 29, -7 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="back_exhaust2" type="AnimatedSprite" parent="."]
+position = Vector2( -29, -7 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="counterclockwise_exhaust_front" type="AnimatedSprite" parent="."]
+position = Vector2( -32, 20 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="counterclockwise_exhaust_back" type="AnimatedSprite" parent="."]
+position = Vector2( 13, -14 )
+rotation = 1.59202
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="clockwise_exhaust_back" type="AnimatedSprite" parent="."]
+position = Vector2( -13, -14 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
+[node name="clockwise_exhaust_front" type="AnimatedSprite" parent="."]
+position = Vector2( 31, 20 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+
 [connection signal="body_entered" from="." to="." method="_on_player_body_entered"]

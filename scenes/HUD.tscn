@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/gui/barHorizontal_green_mid 200.png" type="Texture" id=1]
 [ext_resource path="res://addons/SpaceShooterRedux/Bonus/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
 [ext_resource path="res://addons/SpaceShooterRedux/Bonus/kenvector_future.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://art/gui/barHorizontal_white_mid.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -109,48 +110,36 @@ valign = 1
 [node name="powerups" type="Node2D" parent="."]
 
 [node name="bronze" type="TextureProgress" parent="powerups"]
-anchor_left = 0.083
-anchor_top = 0.046
-anchor_right = 0.291
-anchor_bottom = 0.094
 margin_left = 1660.0
-margin_top = 860.0
+margin_top = 809.0
 margin_right = 1760.0
-margin_bottom = 880.0
-rect_scale = Vector2( 2, 2 )
+margin_bottom = 829.0
 hint_tooltip = "Shield bar"
 max_value = 5.0
-texture_progress = ExtResource( 1 )
+value = 5.0
+texture_progress = ExtResource( 5 )
 nine_patch_stretch = true
 
 [node name="silver" type="TextureProgress" parent="powerups"]
-anchor_left = 0.083
-anchor_top = 0.046
-anchor_right = 0.291
-anchor_bottom = 0.094
 margin_left = 1660.0
-margin_top = 910.0
+margin_top = 859.0
 margin_right = 1760.0
-margin_bottom = 930.0
-rect_scale = Vector2( 2, 2 )
+margin_bottom = 879.0
 hint_tooltip = "Shield bar"
 max_value = 5.0
-texture_progress = ExtResource( 1 )
+value = 5.0
+texture_progress = ExtResource( 5 )
 nine_patch_stretch = true
 
 [node name="gold" type="TextureProgress" parent="powerups"]
-anchor_left = 0.083
-anchor_top = 0.046
-anchor_right = 0.291
-anchor_bottom = 0.094
 margin_left = 1660.0
-margin_top = 958.0
+margin_top = 907.0
 margin_right = 1760.0
-margin_bottom = 978.0
-rect_scale = Vector2( 2, 2 )
+margin_bottom = 927.0
 hint_tooltip = "Shield bar"
 max_value = 5.0
-texture_progress = ExtResource( 1 )
+value = 5.0
+texture_progress = ExtResource( 5 )
 nine_patch_stretch = true
 
 [connection signal="timeout" from="message_timer" to="." method="_on_message_timer_timeout"]

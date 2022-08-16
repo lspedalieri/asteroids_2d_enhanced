@@ -97,6 +97,7 @@ func _on_player_pickup(body):
 	#print(body.type)
 	Global.powerup_counter[body.type] += 1
 	HUD.updatePowerups()
+	player.checkUpgrades()
 	
 	#print(Global.powerup_counter)
 	#$HUD.update_cash(global.cash)

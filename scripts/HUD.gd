@@ -1,9 +1,17 @@
 extends CanvasLayer
 
 var texture_bar = load("res://art/gui/barHorizontal_white_mid.png")
-var color = Color(1,1,1,1)
+var color = Global.white
+onready var shield_bar = $shield_bar
+onready var message_label = $message
+onready var bronze_gauge = $powerups/bronze
+onready var silver_gauge = $powerups/silver
+onready var gold_gauge = $powerups/gold
 
 func _ready():
+	gold_gauge.value = Global.powerup_counter.gold
+	silver_gauge.value = Global.powerup_counter.silver
+	bronze_gauge.value = Global.powerup_counter.bronze
 	pass # Replace with function body.
 
 func _input(event):
@@ -11,7 +19,7 @@ func _input(event):
 		Global.paused = not Global.paused
 		get_tree().set_pause(Global.paused)
 		get_node("pause_popup").visible = Global.paused
-		get_node("message").visible = not Global.paused
+		message_label.visible = not Global.paused
 
 func update(player):
 	update_shield(player.shield_level)
@@ -19,33 +27,33 @@ func update(player):
 	get_node("shield_val").set_text(str(floor(player.shield_level)))
 	
 func update_shield(shield_level):
-	color = Color( 0, 1, 0, 1 )
+	color = Global.yellow
 	if shield_level < 40:
-		color = Color( 1, 0, 0, 1 )
+		color = Global.red
 	elif shield_level < 70:
-		color = Color( 0, 1, 0, 1 )
-	$shield_bar.set_tint_progress(color)
-	$shield_bar.set_progress_texture(texture_bar)
-	$shield_bar.set_value(shield_level)
+		color = Global.yellow
+	shield_bar.set_tint_progress(color)
+	shield_bar.set_progress_texture(texture_bar)
+	shield_bar.set_value(shield_level)
 
 
 func updatePowerups():
 	for node in $powerups.get_children():
 		if node.name == "gold":
-			color = Color( 0, 1, 0, 1 )
+			color = Global.yellow
 		elif node.name == "silver":
-			color = Color( 0.8, 0.8, 0.8, 1 )
+			color = Global.light_grey
 		elif node.name == "bronze":
-			color = Color( 1, 0, 0, 1 )
-		print("metto il powerup nella barra %s col valore %s", node.name, Global.powerup_counter[node.name])
+			color = Global.red
 		node.set_tint_progress(color)
 		node.set_progress_texture(texture_bar)
 		node.set_value(Global.powerup_counter[node.name] % 5)
+	print(Global.powerup_counter)
 
 func show_message(text):
-	get_node("message").set_text(text)
-	get_node("message").show()
+	message_label.set_text(text)
+	message_label.show()
 	get_node("message_timer").start()
 
 func _on_message_timer_timeout():
-	get_node("message").hide()
+	message_label.hide()

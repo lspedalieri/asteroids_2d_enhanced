@@ -30,6 +30,7 @@ func _ready():
 
 #Main game loop
 func _process(delta):
+	print(vel)
 	setShield(delta)
 	setShoots()
 	setInputs(delta)
@@ -57,15 +58,32 @@ func setShield(delta):
 func setInputs(delta):
 	if Input.is_action_pressed("ui_right"):
 		rot += rot_speed * delta
-	if Input.is_action_pressed("ui_left"):
+		get_node("clockwise_exhaust_back").show()
+		get_node("clockwise_exhaust_front").show()
+	elif Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
+		get_node("counterclockwise_exhaust_back").show()
+		get_node("counterclockwise_exhaust_front").show()		
+	else:
+		get_node("counterclockwise_exhaust_back").hide()
+		get_node("counterclockwise_exhaust_front").hide()
+		get_node("clockwise_exhaust_back").hide()
+		get_node("clockwise_exhaust_front").hide()
+		
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 		get_node("exhaust").show()
-		
+	elif Input.is_action_pressed("ui_down") and vel.x != 0 and vel.y != 0:
+		acc = Vector2(thrust, 0).rotated(rot)
+		get_node("back_exhaust1").show()
+		get_node("back_exhaust2").show()
 	else:
 		acc = Vector2(0, 0)
 		get_node("exhaust").hide()
+		get_node("back_exhaust1").hide()
+		get_node("back_exhaust2").hide()
+
+		
 
 func setMovements():
 	if pos.x > screen_size.x:
@@ -109,9 +127,11 @@ func _on_player_body_entered(body):
 		if !is_visible():
 			return
 		if body.is_in_group("powerups"):
-			print("collect powerup")
 			collectPowerup(body)
 			
 func collectPowerup(body):
 	#print("body ",body)
 	emit_signal("pickup", body)
+	
+func checkUpgrades():
+	pass

@@ -9,6 +9,14 @@ var paused = false
 var current_scene = null
 var new_scene = null
 
+#colors
+var light_grey = Color( 0.8, 0.8, 0.8, 1 )
+var yellow = Color( 0, 1, 0, 1 )
+var red = Color( 1, 0, 0, 1 )
+var blue = Color( 0, 0, 1, 1 )
+var black = Color( 0, 0, 0, 1 )
+var white = Color( 1, 1, 1, 1 )
+
 #player settings
 var shield_max = 100
 var player_max_vel = 300
