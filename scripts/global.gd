@@ -20,6 +20,7 @@ var white = Color( 1, 1, 1, 1 )
 #player settings
 var shield_max = 100
 var player_max_vel = 300
+var player_deceleration_factor = 0.05
 var shield_regen = 10
 var bullet_damage = 10
 var cash = 0

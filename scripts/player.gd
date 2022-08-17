@@ -5,7 +5,8 @@ signal pickup
 
 var rot_speed = Global.rot_level[Global.upgrade_level['rot']]
 var thrust = Global.thrust_level[Global.upgrade_level['thrust']]
-var max_vel = 400
+var max_vel = Global.player_max_vel
+var deceleration = Global.player_deceleration_factor
 var friction = 0.05
 export var bullet = preload("res://scenes/player_bullet.tscn")
 onready var bullet_container = get_node("bullet_container")
@@ -31,6 +32,7 @@ func _ready():
 #Main game loop
 func _process(delta):
 	print(vel)
+	vel = vel.clamped(max_vel)
 	setShield(delta)
 	setShoots()
 	setInputs(delta)
@@ -73,8 +75,9 @@ func setInputs(delta):
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
 		get_node("exhaust").show()
-	elif Input.is_action_pressed("ui_down") and vel.x != 0 and vel.y != 0:
-		acc = Vector2(thrust, 0).rotated(rot)
+	elif Input.is_action_pressed("ui_down"):
+		vel.x = lerp(vel.x, 0, deceleration)
+		vel.y = lerp(vel.y, 0, deceleration)
 		get_node("back_exhaust1").show()
 		get_node("back_exhaust2").show()
 	else:
