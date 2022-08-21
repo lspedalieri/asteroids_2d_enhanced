@@ -18,6 +18,9 @@ var blue = Color( 0, 0, 1, 1 )
 var black = Color( 0, 0, 0, 1 )
 var white = Color( 1, 1, 1, 1 )
 
+#space settings
+var space_friction = 0.05
+
 #player settings
 var shield_max = 100
 var player_max_vel = 300
@@ -26,22 +29,22 @@ var shield_regen = 10
 var bullet_damage = 10
 var cash = 0
 var upgrade_level = {
-	'thrust':1,
-	'fire_rate':1,
-	'rot':1,
+	'thrust':0,
+	'fire_rate':0,
+	'rot':0,
 	'manouver':1,
-	'shield_regen':4,
+	'shield_regen':0,
 	'guns':1,
 	'shield':50
 }
-var thrust_level = {1:200, 2:400, 3:600, 4:800}
-var rot_level = {1:1.5, 2:2.5, 3:3.5, 4:4.5}
-var shield_level = {1:5, 2:7.5, 3:10, 4:15}
-var fire_level = {1:0.4, 2:0.3, 3:0.2, 4:0.1}
+var fire_rate = {0:0.5, 1:0.4, 2:0.3, 3:0.2, 4:0.1}
+var thrust = {0:100, 1:200, 2:400, 3:600, 4:800}
+var rot = {0:1, 1:1.5, 2:2.5, 3:3.5, 4:4.5}
+var shield_level = {0:2.5, 1:5, 2:7.5, 3:10, 4:15}
 var powerup_counter := {
-	"gold":0,
-	"silver":0,
-	"bronze":0
+	"gold":0, 	#fire rate upgrade
+	"silver":0, #thruster upgrade
+	"bronze":0 	#rotation upgrade
 }
 
 
@@ -52,8 +55,9 @@ var asteroid_max_vel = 300
 var explode_distance = 25
 var asteroid_sizes = ["big", "med", "sm", "tiny"]
 var break_pattern = {'big' : 'med', 'med' : 'sm', 'sm' : 'tiny', 'tiny' : null}
-var ast_damage = {'big' : 40, 'med' : 25, 'sm' : 15, 'tiny' : 10}
-var ast_points = {'big' : 10, 'med' : 15, 'sm' : 20, 'tiny' : 40}
+var asteroid_damage = {'big' : 40, 'med' : 25, 'sm' : 15, 'tiny' : 10}
+var asteroid_points = {'big' : 10, 'med' : 15, 'sm' : 20, 'tiny' : 40}
+var asteroid_life = {'big' : 4, 'med' : 3, 'sm': 2, 'tiny' : 1}
 var asteroid_textures = {'big': ['res://art/asteroids/meteorGrey_big1.png',
 						'res://art/asteroids/meteorGrey_big3.png',
 						'res://art/asteroids/meteorGrey_big4.png'],

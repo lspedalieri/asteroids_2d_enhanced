@@ -15,3 +15,15 @@ __meta__ = {
 scale = Vector2( 2, 2 )
 
 [node name="asteroid_collider" type="CollisionShape2D" parent="."]
+
+[node name="size_label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "size"
+
+[node name="life_label" type="Label" parent="."]
+margin_left = -2.0
+margin_top = -28.0
+margin_right = 38.0
+margin_bottom = -14.0
+text = "life"

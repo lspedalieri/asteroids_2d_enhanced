@@ -3,10 +3,11 @@ extends KinematicBody2D
 signal explode
 
 onready var puff = get_node("puff")
+onready var life_label = get_node("life_label")
 onready var asteroid_collider = get_node("asteroid_collider")
 export var bounce = 1.1
 
-
+var life
 var size
 var vel = Vector2()
 var max_vel = 300
@@ -24,8 +25,11 @@ func _ready():
 
 #Creazione degli asteroidi. Randomizzati per grandezza e forma
 #La grandezza della collision shape viene decisa in base allo sprite scelto 
-func init(init_size, init_pos, init_vel):
+func init(init_size, init_pos, init_vel, init_life):
 	size = init_size
+	$size_label.set_text(init_size)
+	$life_label.set_text(String(init_life))
+	life = init_life
 	if init_vel.length() > 0:
 		vel = init_vel
 	else:
@@ -49,6 +53,7 @@ func _process(delta):
 	set_rotation(get_rotation() + rot_speed * delta)
 	var collision = move_and_collide(vel * delta)
 	if collision:
+		print("asteroid collision")
 		#vel += get_collision_normal() * (get_collider().vel.length() * bounce)
 		vel = vel.bounce(collision.normal)
 		puff.global_position = collision.position  
@@ -68,5 +73,5 @@ func _process(delta):
 func explode(hit_vel):
 	print("asteroid explode")
 	emit_signal("explode", size, get_position(), vel, hit_vel)
-	Global.score += Global.ast_points[size]
+	Global.score += Global.asteroid_points[size]
 	call_deferred("queue_free")

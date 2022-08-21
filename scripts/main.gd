@@ -20,6 +20,7 @@ func _ready():
 	set_process(true)
 	get_node("music/backmusic1").play()
 	player.connect("explode", self, "explode_player")
+	player.connect("upgrade", self, "upgrade_message")
 	begin_next_level()
 	
 func begin_next_level():
@@ -30,18 +31,21 @@ func begin_next_level():
 	HUD.show_message("Wave %s" % Global.level)
 	for i in range(Global.level):
 		var asteroid_vars = init_asteroid_vars()
-		spawn_asteroid(asteroid_vars[0], asteroid_vars[1], asteroid_vars[2])
+		spawn_asteroid(asteroid_vars[0], asteroid_vars[1], asteroid_vars[2], asteroid_vars[3])
+
+func powerupMessage(message):
+	HUD.show_message(message)
 	
 func _process(delta):
 	HUD.update(player)
 	if asteroid_container.get_child_count() == 0:
 		begin_next_level()
 		
-func spawn_asteroid(size, pos, vel):
-	var a = asteroid.instance()
-	asteroid_container.add_child(a)
-	a.connect("explode", self, "explode_asteroid")
-	a.init(size, pos, vel)
+func spawn_asteroid(size, pos, vel, life):
+	var ast = asteroid.instance()
+	asteroid_container.add_child(ast)
+	ast.connect("explode", self, "explode_asteroid")
+	ast.init(size, pos, vel, life)
 
 func spawn_powerup(pos):
 	print("spawn powerup")
@@ -55,7 +59,8 @@ func init_asteroid_vars():
 	var size = Global.asteroid_sizes[randi() % Global.asteroid_sizes.size() - 1]
 	var pos = spawns.get_child(randi() % (Global.spawn_locations_num -1)).get_position()
 	var vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 5*PI))
-	return [size, pos, vel]
+	var life = Global.asteroid_life[size]
+	return [size, pos, vel, life]
 
 func explode_asteroid(size, pos, vel, hit_vel):
 	var newsize = Global.break_pattern[size]
@@ -63,7 +68,7 @@ func explode_asteroid(size, pos, vel, hit_vel):
 		for offset in [-1 ,1]:
 			var newpos = pos + hit_vel.tangent().clamped(Global.explode_distance) * offset
 			var newvel = (vel + hit_vel.tangent()) * 2 * offset
-			spawn_asteroid(newsize, newpos, newvel)
+			spawn_asteroid(newsize, newpos, newvel, Global.asteroid_life[newsize])
 	#print("asteroid explosion animation")
 	var expl = asteroid_explosion.instance()
 	$explosion_container.add_child(expl)
@@ -108,12 +113,14 @@ func _on_enemy_timer_timeout():
 	enemy_timer.start()
 
 func _on_player_pickup(body):
-	print(body.type)
-	Global.powerup_counter[body.type] += 1
+	#print(body.type)
+	#Global.powerup_counter[body.type] += 1
 	HUD.updatePowerups()
-	player.checkUpgrades()
+	#player.checkUpgrades()
 	
 	#print(Global.powerup_counter)
 	#$HUD.update_cash(global.cash)
 	body.queue_free()
 	
+func upgrade_message(message):
+	HUD.show_message(message + " Upgraded")

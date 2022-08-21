@@ -1,7 +1,7 @@
 #########################################
 #
-#	Powerup Drop istance
-#	Sistema di drop randomizzato
+#	Simple Powerup Drop System
+#	Sistema di 3 drop randomizzati
 #	Ogni drop ha una durata prestabilita e alla fine emette un -
 #	segnale al main per l'esplosione e si toglie dalla memoria
 #	Può fare il giro della "ciambella"
@@ -10,7 +10,8 @@
 
 extends KinematicBody2D
 
-export var vel = Vector2(50, 50)
+#Direzione randomizzata dei powerup
+var vel = Vector2(rand_range(-100,100), rand_range(-100,100))
 
 var drop_explosion = preload("res://scenes/drop_explosion.tscn")
 
@@ -56,6 +57,7 @@ func getIndex():
 #da una texture al node sprite e un raggio alla collision box
 func getTexture():
 	type = getIndex()
+	print("Spawned ", type, " powerup")
 	var texture = load(node_textures[type])
 	get_node("sprite").set_texture(texture)
 	extents = texture.get_size() / 2
