@@ -48,7 +48,6 @@ func updatePowerups():
 		node.set_tint_progress(color)
 		node.set_progress_texture(texture_bar)
 		node.set_value(Global.powerup_counter[node.name] % 5)
-	print(Global.powerup_counter)
 
 func show_message(text):
 	message_label.set_text(text)

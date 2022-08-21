@@ -227,14 +227,14 @@ func _parseGDXTexturePacker(jsonContent):
 	atlas["sprites"] = sprites
 	atlas["imagePath"] = strArr[1]
 	var i = 6
-	print(strArr[strArr.size()-2])
+	#print(strArr[strArr.size()-2])
 	while i < strArr.size()-1:
 		var sprite = {}
 		sprite["name"] = strArr[i]
 		var xy = strArr[i+2].split(":")
 		var size = strArr[i+3].split(":")
 		var index = strArr[i+6].split(":")
-		print(index[1])
+		#print(index[1])
 		if index[1].strip_edges(true,true) != "-1" :
 			sprite["name"] = str(strArr[i],".",index[1].strip_edges(true,true))
 		

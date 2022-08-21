@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.7429
 
-[node name="Drop" type="RigidBody2D" groups=["powerups"]]
+[node name="Drop" type="KinematicBody2D" groups=["powerups"]]
 collision_layer = 8
 script = ExtResource( 1 )
 
@@ -16,8 +16,8 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Lifetime" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 2.0
+one_shot = true
 autostart = true
 
-[connection signal="body_entered" from="." to="." method="_on_Drop_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

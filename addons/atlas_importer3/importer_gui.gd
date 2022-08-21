@@ -31,8 +31,8 @@ func _ready():
 	$Input/Button.connect("pressed",self,"_saveAtlas")
 	
 	print("ready")
-	#et_node("Atlas Importer/Input/Source/Browse").connect("pressed", self, "_selectMetaFile")
-	#print(get_node("Atlas Importer/Input/Source/Browse"))
+	#get_node("Atlas Importer/Input/Source/Browse").connect("pressed", self, "_selectMetaFile")
+	print(get_node("Atlas Importer/Input/Source/Browse"))
 	# Called every time the node is added to the scene.
 	# Initialization here
 func _typeSelected(id):

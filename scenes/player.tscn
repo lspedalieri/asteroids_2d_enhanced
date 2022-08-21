@@ -60,40 +60,43 @@ attenuation = 8.28211
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 
-[node name="exhaust" type="AnimatedSprite" parent="."]
+[node name="thrusters" type="Node2D" parent="."]
 position = Vector2( 0, 35 )
+
+[node name="main_exhaust" type="AnimatedSprite" parent="thrusters"]
+rotation = -0.00187606
 frames = SubResource( 2 )
 
-[node name="back_exhaust1" type="AnimatedSprite" parent="."]
-position = Vector2( 29, -7 )
+[node name="back_exhaust1" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( 29, -42 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
-[node name="back_exhaust2" type="AnimatedSprite" parent="."]
-position = Vector2( -29, -7 )
+[node name="back_exhaust2" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( -29, -42 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
-[node name="counterclockwise_exhaust_front" type="AnimatedSprite" parent="."]
-position = Vector2( -32, 20 )
+[node name="counterclockwise_exhaust_front" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( -32, -15 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
-[node name="counterclockwise_exhaust_back" type="AnimatedSprite" parent="."]
-position = Vector2( 13, -14 )
-rotation = 1.59202
+[node name="counterclockwise_exhaust_back" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( 12, -49 )
+rotation = 1.5707
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
-[node name="clockwise_exhaust_back" type="AnimatedSprite" parent="."]
-position = Vector2( -13, -14 )
+[node name="clockwise_exhaust_back" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( -12, -49 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
-[node name="clockwise_exhaust_front" type="AnimatedSprite" parent="."]
-position = Vector2( 31, 20 )
+[node name="clockwise_exhaust_front" type="AnimatedSprite" parent="thrusters"]
+position = Vector2( 31, -15 )
 rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )

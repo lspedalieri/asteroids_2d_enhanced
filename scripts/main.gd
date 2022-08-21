@@ -1,16 +1,20 @@
 extends Node
 
 var asteroid = preload("res://scenes/asteroid.tscn")
-var explosion = preload("res://scenes/explosion.tscn")
+var player_explosion = preload("res://scenes/explosion.tscn")
+var asteroid_explosion = preload("res://scenes/asteroid_explosion.tscn")
+var drop_explosion = preload("res://scenes/drop_explosion.tscn")
+
 var enemy = preload("res://scenes/enemy.tscn")
-var Drop = preload("res://scenes/Drop.tscn")
+var drop = preload("res://scenes/Drop.tscn")
 
 onready var spawns = get_node("spawn_locations")
 onready var asteroid_container = get_node("asteroid_container")
 onready var HUD = get_node("HUD")
 onready var expl_sounds = get_node("expl_sounds")
 onready var player = get_node("player")
-onready var enemy_timer = get_node("enemy_timer")
+onready var enemy_timer = get_node("Timers/enemy_timer")
+onready var restart_timer = get_node("Timers/restart_timer")
 
 func _ready():
 	set_process(true)
@@ -39,6 +43,14 @@ func spawn_asteroid(size, pos, vel):
 	a.connect("explode", self, "explode_asteroid")
 	a.init(size, pos, vel)
 
+func spawn_powerup(pos):
+	print("spawn powerup")
+	var d = drop.instance()
+	d.position = pos
+	add_child(d)
+	d.connect("explode", self, "explode_drop")
+
+
 func init_asteroid_vars():
 	var size = Global.asteroid_sizes[randi() % Global.asteroid_sizes.size() - 1]
 	var pos = spawns.get_child(randi() % (Global.spawn_locations_num -1)).get_position()
@@ -52,35 +64,38 @@ func explode_asteroid(size, pos, vel, hit_vel):
 			var newpos = pos + hit_vel.tangent().clamped(Global.explode_distance) * offset
 			var newvel = (vel + hit_vel.tangent()) * 2 * offset
 			spawn_asteroid(newsize, newpos, newvel)
-	var expl = explosion.instance()
-	add_child(expl)
+	#print("asteroid explosion animation")
+	var expl = asteroid_explosion.instance()
+	$explosion_container.add_child(expl)
 	expl.set_scale(Vector2(1.0 / (Global.break_pattern.keys().find(size) + 1), 1.0 / (Global.break_pattern.keys().find(size) + 1)))
 	expl.set_position(pos)
-	expl.play()
-	expl.play_explosion_sounds()
+	#expl.play_explosion_sounds()
 	if randf() < Global.asteroid_drop_chance:
-		var d = Drop.instance()
-		d.position = pos
-		add_child(d)
-	
+		spawn_powerup(pos)
+
 func explode_player():
 	player.disable()
-	var expl = explosion.instance()
+	var expl = player_explosion.instance()
 	add_child(expl)
 	#expl.scale(Vector2(1.5, 1.5))
 	expl.set_position(player.pos)
 	expl.play()
 	expl.play_explosion_sounds()
 	HUD.show_message("Game Over")
-	get_node("restart_timer").start()
+	restart_timer.start()
 
 func explode_enemy(pos):
-	var expl = explosion.instance()
+	var expl = player_explosion.instance()
 	add_child(expl)
 	expl.set_position(pos)
 	expl.set_animation("sonic")
 	expl.play()
-	
+
+func explode_drop(pos):
+	var e = drop_explosion.instance()
+	$explosion_container.add_child(e)
+	e.set_position(pos)
+
 func _on_restart_timer_timeout():
 	Global.new_game()
 
@@ -91,10 +106,9 @@ func _on_enemy_timer_timeout():
 	e.connect("explode", self, "explode_enemy")
 	enemy_timer.set_wait_time(rand_range(20, 40))
 	enemy_timer.start()
-	
 
 func _on_player_pickup(body):
-	#print(body.type)
+	print(body.type)
 	Global.powerup_counter[body.type] += 1
 	HUD.updatePowerups()
 	player.checkUpgrades()

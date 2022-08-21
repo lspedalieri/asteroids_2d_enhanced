@@ -9,6 +9,7 @@ var paused = false
 var current_scene = null
 var new_scene = null
 
+
 #colors
 var light_grey = Color( 0.8, 0.8, 0.8, 1 )
 var yellow = Color( 0, 1, 0, 1 )
@@ -84,14 +85,14 @@ func goto_scene(path):
 	current_scene.queue_free()
 	current_scene = new_scene
 	
+#powerup settings
+var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
+						"silver":'res://art/powerups/star_silver.png',
+						"gold":'res://art/powerups/star_gold.png'}
+var powerup_lifetime = 15
+						
 func new_game():
 	game_over = false
 	score = 0
 	level = 0
 	goto_scene("res://scenes/main.tscn")
-	
-#powerup settings
-var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
-						"silver":'res://art/powerups/star_silver.png',
-						"gold":'res://art/powerups/star_gold.png'}
-						

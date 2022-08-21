@@ -42,7 +42,7 @@ func getTexture():
 	#give a proper size of the collision shape of the asteroids
 	shape.radius = min(texture.get_width(), texture.get_height())
 	return shape
-	
+
 
 func _process(delta):
 	vel = vel.clamped(Global.asteroid_max_vel)
@@ -66,6 +66,7 @@ func _process(delta):
 	set_position(pos)
 	
 func explode(hit_vel):
+	print("asteroid explode")
 	emit_signal("explode", size, get_position(), vel, hit_vel)
 	Global.score += Global.ast_points[size]
-	queue_free()
+	call_deferred("queue_free")

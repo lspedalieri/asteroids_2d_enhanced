@@ -13,6 +13,14 @@ onready var bullet_container = get_node("bullet_container")
 onready var gun_timer = get_node("gun_timer")
 onready var shoot_sounds = get_node("shoot_sounds")
 onready var fire = get_node("sounds/fire")
+onready var counterclockwise_exhaust_back = get_node("thrusters/counterclockwise_exhaust_back")
+onready var counterclockwise_exhaust_front = get_node("thrusters/counterclockwise_exhaust_front")
+onready var clockwise_exhaust_back = get_node("thrusters/clockwise_exhaust_back")
+onready var clockwise_exhaust_front = get_node("thrusters/clockwise_exhaust_front")
+onready var main_exhaust = get_node("thrusters/main_exhaust")
+onready var back_exhaust1 = get_node("thrusters/back_exhaust1")
+onready var back_exhaust2 = get_node("thrusters/back_exhaust2")
+
 
 var screen_size = Vector2()
 var rot = 0
@@ -31,7 +39,6 @@ func _ready():
 
 #Main game loop
 func _process(delta):
-	print(vel)
 	vel = vel.clamped(max_vel)
 	setShield(delta)
 	setShoots()
@@ -60,33 +67,31 @@ func setShield(delta):
 func setInputs(delta):
 	if Input.is_action_pressed("ui_right"):
 		rot += rot_speed * delta
-		get_node("clockwise_exhaust_back").show()
-		get_node("clockwise_exhaust_front").show()
+		clockwise_exhaust_back.show()
+		clockwise_exhaust_front.show()
 	elif Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
-		get_node("counterclockwise_exhaust_back").show()
-		get_node("counterclockwise_exhaust_front").show()		
+		counterclockwise_exhaust_back.show()
+		counterclockwise_exhaust_front.show()		
 	else:
-		get_node("counterclockwise_exhaust_back").hide()
-		get_node("counterclockwise_exhaust_front").hide()
-		get_node("clockwise_exhaust_back").hide()
-		get_node("clockwise_exhaust_front").hide()
+		counterclockwise_exhaust_back.hide()
+		counterclockwise_exhaust_front.hide()
+		clockwise_exhaust_back.hide()
+		clockwise_exhaust_front.hide()
 		
 	if Input.is_action_pressed("ui_up"):
 		acc = Vector2(-thrust, 0).rotated(rot)
-		get_node("exhaust").show()
+		main_exhaust.show()
 	elif Input.is_action_pressed("ui_down"):
 		vel.x = lerp(vel.x, 0, deceleration)
 		vel.y = lerp(vel.y, 0, deceleration)
-		get_node("back_exhaust1").show()
-		get_node("back_exhaust2").show()
+		back_exhaust1.show()
+		back_exhaust2.show()
 	else:
 		acc = Vector2(0, 0)
-		get_node("exhaust").hide()
-		get_node("back_exhaust1").hide()
-		get_node("back_exhaust2").hide()
-
-		
+		main_exhaust.hide()
+		back_exhaust1.hide()
+		back_exhaust2.hide()
 
 func setMovements():
 	if pos.x > screen_size.x:
@@ -126,6 +131,8 @@ func _on_player_body_entered(body):
 			if shield_up:
 				body.explode(vel)
 				damage(Global.ast_damage[body.size])
+			else:
+				emit_signal("explode")
 	if body.get_groups().has("powerups"):
 		if !is_visible():
 			return
