@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var texture_bar = load("res://art/gui/barHorizontal_white_mid.png")
 var color = Global.white
+var label
 onready var shield_bar = $shield_bar
 onready var message_label = $message
 onready var bronze_gauge = $powerups/bronze
@@ -41,13 +42,17 @@ func updatePowerups():
 	for node in $powerups.get_children():
 		if node.name == "gold":
 			color = Global.yellow
+			label = $powerups/gold/label
 		elif node.name == "silver":
 			color = Global.light_grey
+			label = $powerups/silver/label
 		elif node.name == "bronze":
 			color = Global.red
+			label = $powerups/bronze/label
 		node.set_tint_progress(color)
 		node.set_progress_texture(texture_bar)
 		node.set_value(Global.powerup_counter[node.name] % 5)
+		label.set_text(String(Global.powerup_counter[node.name]))
 
 func show_message(text):
 	message_label.set_text(text)
