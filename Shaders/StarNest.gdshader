@@ -1,7 +1,7 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform int iterations = 20;
+uniform int iterations = 1;
 uniform float formuparam = 1.00;
 
 uniform int volsteps = 20;
