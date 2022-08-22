@@ -15,6 +15,7 @@ func _on_player_bullet_body_entered(body):
 			body.explode(vel.normalized())
 		else:
 			body.life_label.set_text(String(body.life))
+			body.fracking()
 
 			
 

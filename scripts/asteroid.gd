@@ -90,3 +90,6 @@ func explode(hit_vel):
 	emit_signal("explode", size, get_position(), vel, hit_vel)
 	Global.score += Global.asteroid_properties[size].points
 	call_deferred("queue_free")
+	
+func fracking():
+	$fracking.play("fracking")
