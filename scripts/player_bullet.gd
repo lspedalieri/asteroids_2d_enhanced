@@ -10,11 +10,13 @@ func _on_player_bullet_body_entered(body):
 		#delete the bullet
 		queue_free()
 		#body explode in 2 pieces in opposite directions
-		if body.life > 0:
-			body.life -= 1
-			body.life_label = body.life
-		else:
+		body.life -= 1
+		if body.life == 0:
 			body.explode(vel.normalized())
+		else:
+			body.life_label.set_text(String(body.life))
+
+			
 
 func _on_player_bullet_area_entered( area ):
 	if area.is_in_group("enemies"):
