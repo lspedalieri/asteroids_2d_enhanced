@@ -6,8 +6,9 @@ var asteroid_explosion = preload("res://scenes/asteroid_explosion.tscn")
 var drop_explosion = preload("res://scenes/drop_explosion.tscn")
 
 var enemy = preload("res://scenes/enemy.tscn")
-var drop = preload("res://scenes/Drop.tscn")
+var drop = preload("res://scenes/drop.tscn")
 
+onready var asteroid_template = Global.asteroid_template
 onready var spawns = get_node("spawn_locations")
 onready var asteroid_container = get_node("asteroid_container")
 onready var HUD = get_node("HUD")
@@ -59,7 +60,7 @@ func init_asteroid_vars():
 	var size = Global.asteroid_sizes[randi() % Global.asteroid_sizes.size() - 1]
 	var pos = spawns.get_child(randi() % (Global.spawn_locations_num -1)).get_position()
 	var vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 5*PI))
-	var life = Global.asteroid_life[size]
+	var life = Global.asteroid_properties[size].life
 	return [size, pos, vel, life]
 
 func explode_asteroid(size, pos, vel, hit_vel):
@@ -75,7 +76,7 @@ func explode_asteroid(size, pos, vel, hit_vel):
 	expl.set_scale(Vector2(1.0 / (Global.break_pattern.keys().find(size) + 1), 1.0 / (Global.break_pattern.keys().find(size) + 1)))
 	expl.set_position(pos)
 	#expl.play_explosion_sounds()
-	if randf() < Global.asteroid_drop_chance:
+	if randf() < Global.asteroid_drop_chance[size]:
 		spawn_powerup(pos)
 
 func explode_player():
@@ -86,7 +87,7 @@ func explode_player():
 	expl.set_position(player.pos)
 	expl.play()
 	expl.play_explosion_sounds()
-	HUD.show_message("Game Over")
+	HUD.show_message(Global.messages['game_over'])
 	restart_timer.start()
 
 func explode_enemy(pos):

@@ -21,6 +21,10 @@ var white = Color( 1, 1, 1, 1 )
 #space settings
 var space_friction = 0.05
 
+#HUD settings
+var messages = {'game_over': 'Game Over'}
+
+
 #player settings
 var shield_max = 100
 var player_max_vel = 300
@@ -49,25 +53,46 @@ var powerup_counter := {
 
 
 #asteroid settings
-var asteroid_drop_chance = 0.95
+#var asteroid_drop_chance = 0.95
 var spawn_locations_num = 8
 var asteroid_max_vel = 300
 var explode_distance = 25
 var asteroid_sizes = ["big", "med", "sm", "tiny"]
 var break_pattern = {'big' : 'med', 'med' : 'sm', 'sm' : 'tiny', 'tiny' : null}
-var asteroid_damage = {'big' : 40, 'med' : 25, 'sm' : 15, 'tiny' : 10}
-var asteroid_points = {'big' : 10, 'med' : 15, 'sm' : 20, 'tiny' : 40}
-var asteroid_life = {'big' : 4, 'med' : 3, 'sm': 2, 'tiny' : 1}
-var asteroid_textures = {'big': ['res://art/asteroids/meteorGrey_big1.png',
+var asteroid_template = {'size':'','life':'','damage':'','points':'','drop_chance':'','texture':'', 'vel':Vector2(0,0), 'pos':Vector2(0,0)}
+var asteroid_properties = {
+	'big' : {'textures': ['res://art/asteroids/meteorGrey_big1.png',
 						'res://art/asteroids/meteorGrey_big3.png',
 						'res://art/asteroids/meteorGrey_big4.png'],
-				'med': ['res://art/asteroids/meteorGrey_med1.png',
+			 'life': 4,
+			 'damage': 40,
+			 'points': 10,
+			 'drop_chance': 0.5
+			},
+	'med' : {'textures': ['res://art/asteroids/meteorGrey_med1.png',
 						'res://art/asteroids/meteorGrey_med2.png'],
-				'sm': ['res://art/asteroids/meteorGrey_small1.png',
+			 'life': 3,
+			 'damage': 25,
+			 'points': 15,
+			 'drop_chance': 0.6
+			},
+	'sm' : {'textures': ['res://art/asteroids/meteorGrey_small1.png',
 					   'res://art/asteroids/meteorGrey_small2.png'],
-				'tiny': ['res://art/asteroids/meteorGrey_tiny1.png',
-						 'res://art/asteroids/meteorGrey_tiny2.png']}
-						
+			 'life': 2,
+			 'damage': 15,
+			 'points': 20,
+			 'drop_chance': 0.8
+			},
+	'tiny' : {'textures': ['res://art/asteroids/meteorGrey_tiny1.png',
+						 'res://art/asteroids/meteorGrey_tiny2.png'],
+			 'life': 1,
+			 'damage': 10,
+			 'points': 40,
+			 'drop_chance': 0.95
+			}
+}
+var asteroid_drop_chance = {'big' : 0.5, 'med' : 0.6, 'sm' : 0.8, 'tiny' : 0.95}
+var asteroid_life = {'big' : 4, 'med' : 3, 'sm': 2, 'tiny' : 1}
 
 #enemy settings
 var enemy_drop_chance = 0.50
@@ -76,6 +101,12 @@ var enemy_health = 30
 var enemy_points = 100
 var boss_health = 200
 var boss_points = 1000
+
+###################################################
+#
+#	Global Singleton Methods to start game
+#
+###################################################
 
 func _ready():
 	var root = get_tree().get_root()

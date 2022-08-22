@@ -156,7 +156,7 @@ func _on_player_body_entered(body):
 		if body.is_in_group("asteroids"):
 			if shield_up:
 				body.explode(vel)
-				damage(Global.asteroid_damage[body.size])
+				damage(Global.asteroid_properties[body.size].damage)
 			else:
 				emit_signal("explode")
 	if body.get_groups().has("powerups"):
@@ -166,38 +166,37 @@ func _on_player_body_entered(body):
 			collectPowerup(body)
 			
 func collectPowerup(body):
-	print("collected ",body.type)
+	#print("collected ",body.type)
 	Global.powerup_counter[body.type] += 1
 	emit_signal("pickup", body)
 	checkUpgrades(body.type)
 	
 	
 func checkUpgrades(type):
-	print("check upgrade ", type)
+	#print("check upgrade ", type)
 	match type:
 		"gold":
-			print("found upgrade gold")
+			#print("found upgrade gold")
 			var new_fire_rate:int = Global.powerup_counter.gold/5
 			if new_fire_rate < 5 and fire_rate != Global.fire_rate[new_fire_rate]:
-				print("upgrade fire rate")
+				#print("upgrade fire rate")
 				emit_signal("upgrade", "fire rate")
 				fire_rate = Global.fire_rate[new_fire_rate]
 				gun_timer.set_wait_time(fire_rate)
 			pass
 		"silver":
-			print("found upgrade silver")
+			#print("found upgrade silver")
 			var new_thrust:int = Global.powerup_counter.silver/5
 			if new_thrust < 5 and thrust != Global.thrust[new_thrust]:
-				print("upgrade thruster")
+				#print("upgrade thruster")
 				emit_signal("upgrade", "thrusters")
 				thrust = Global.thrust[new_thrust]
 			pass
 		"bronze":
-			print("found upgrade bronze")
+			#print("found upgrade bronze")
 			var new_rot_speed:int = Global.powerup_counter.bronze/5
 			if new_rot_speed < 5 and rot_speed != Global.rot[new_rot_speed]:
 				emit_signal("upgrade", "rotation")
 				rot_speed = Global.rot[new_rot_speed]
 			pass
 	print(Global.powerup_counter)
-

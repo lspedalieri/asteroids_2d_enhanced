@@ -1,3 +1,13 @@
+########################################
+#
+#	Asteroid object
+#	Asteroids spawn from spawn point
+#	At every spawn an asteroid with random size from a random spawn point
+#	Asteroids have an health and "durability" depending by their size
+#	Colliding with an asteroid gives damage
+#
+########################################
+
 extends KinematicBody2D
 
 signal explode
@@ -14,7 +24,7 @@ var max_vel = 300
 var rot_speed
 var screen_size
 var extents
-var node_textures = Global.asteroid_textures
+var properties = Global.asteroid_properties
 
 func _ready():
 	add_to_group("asteroids")
@@ -26,10 +36,7 @@ func _ready():
 #Creazione degli asteroidi. Randomizzati per grandezza e forma
 #La grandezza della collision shape viene decisa in base allo sprite scelto 
 func init(init_size, init_pos, init_vel, init_life):
-	size = init_size
-	$size_label.set_text(init_size)
-	$life_label.set_text(String(init_life))
-	life = init_life
+	setLabels(init_size, init_life)
 	if init_vel.length() > 0:
 		vel = init_vel
 	else:
@@ -39,7 +46,7 @@ func init(init_size, init_pos, init_vel, init_life):
 	set_position(init_pos)
 
 func getTexture():
-	var texture = load(node_textures[size][randi() % node_textures[size].size()])
+	var texture = load(properties[size].textures[randi() % properties[size].textures.size()])
 	get_node("sprite").set_texture(texture)
 	extents = texture.get_size() / 2
 	var shape = CircleShape2D.new()
@@ -47,17 +54,25 @@ func getTexture():
 	shape.radius = min(texture.get_width(), texture.get_height())
 	return shape
 
+func setLabels(init_size, init_life):
+	size = init_size
+	life = init_life
+	$size_label.set_text(init_size)
+	$life_label.set_text(String(init_life))
+
 
 func _process(delta):
+	$size_label.set_rotation(0)
+	$size_label.set_rotation(0)
 	vel = vel.clamped(Global.asteroid_max_vel)
 	set_rotation(get_rotation() + rot_speed * delta)
 	var collision = move_and_collide(vel * delta)
-	if collision:
-		print("asteroid collision")
-		#vel += get_collision_normal() * (get_collider().vel.length() * bounce)
-		vel = vel.bounce(collision.normal)
-		puff.global_position = collision.position  
-		puff.emitting = true
+#	if collision:
+#		print("asteroid collision")
+#		#vel += get_collision_normal() * (get_collider().vel.length() * bounce)
+#		vel = vel.bounce(collision.normal)
+#		puff.global_position = collision.position  
+#		puff.emitting = true
 	# wrap around screen edges
 	var pos = get_position()
 	if pos.x > screen_size.x + extents.x:
@@ -73,5 +88,5 @@ func _process(delta):
 func explode(hit_vel):
 	print("asteroid explode")
 	emit_signal("explode", size, get_position(), vel, hit_vel)
-	Global.score += Global.asteroid_points[size]
+	Global.score += Global.asteroid_properties[size].points
 	call_deferred("queue_free")
