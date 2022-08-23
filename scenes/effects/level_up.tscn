@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scripts/level_up.gd" type="Script" id=1]
+[ext_resource path="res://art/effects/alpha/spotlight_7.png" type="Texture" id=2]
+[ext_resource path="res://art/effects/alpha/effect_4.png" type="Texture" id=3]
+[ext_resource path="res://art/effects/alpha/spotlight_1.png" type="Texture" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0.27044, 0.72327, 1 )
+colors = PoolColorArray( 0.0238953, 0.203213, 0.679688, 1, 0.529966, 0.851562, 0.103119, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.53095 ), -2.62074, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = -100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "levelup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 6.9644, 0.210224 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 3, 3 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flare2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.631962, 0.685107 ), Vector2( 3, 3 ), Vector2( 0.631962, 0.685107 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flare:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.180392, 0.8, 0.109804, 0 ), Color( 0.180392, 0.8, 0.109804, 1 ), Color( 0.180392, 0.8, 0.109804, 0 ), Color( 0.180392, 0.8, 0.109804, 1 ), Color( 0.180392, 0.8, 0.109804, 0 ), Color( 0.180392, 0.8, 0.109804, 1 ), Color( 0.180392, 0.8, 0.109804, 0 ), Color( 0.180392, 0.8, 0.109804, 1 ), Color( 0.180392, 0.8, 0.109804, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="level_up" type="Control"]
+rect_scale = Vector2( 0.99788, 1 )
+script = ExtResource( 1 )
+
+[node name="Flare" type="Sprite" parent="."]
+modulate = Color( 0.180392, 0.8, 0.109804, 0 )
+material = SubResource( 1 )
+texture = ExtResource( 4 )
+
+[node name="Flare2" type="Sprite" parent="."]
+modulate = Color( 0.180392, 0.8, 0.109804, 1 )
+material = SubResource( 2 )
+scale = Vector2( 0.631962, 0.685107 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 0.14, 1.5, 0, 1 )
+material = SubResource( 3 )
+scale = Vector2( 1e-05, 1e-05 )
+amount = 4
+process_material = SubResource( 8 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/levelup = SubResource( 9 )

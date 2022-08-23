@@ -4,10 +4,35 @@ extends Node
 
 var game_over = false
 var score = 0
+var chrono = 0
 var level = 0
 var paused = false
 var current_scene = null
 var new_scene = null
+var leaderboard_data = [{
+	"date":1100000,
+	"name":"Orloph",
+	"score":"1000",
+	"time":"1000"
+},
+{
+	"date":1100000,
+	"name":"Orloph",
+	"score":"1000",
+	"time":"1000"
+},
+{
+	"date":1100000,
+	"name":"Orloph",
+	"score":"1000",
+	"time":"1000"
+},
+{
+	"date":1100000,
+	"name":"Orloph",
+	"score":"1000",
+	"time":"1000"
+}]
 
 
 #colors
@@ -104,6 +129,7 @@ var asteroid_drop_chance = {'big' : 0.5, 'med' : 0.6, 'sm' : 0.8, 'tiny' : 0.95}
 var asteroid_life = {'big' : 4, 'med' : 3, 'sm': 2, 'tiny' : 1}
 
 #enemy settings
+var enemy_timer = 60
 var enemy_drop_chance = 0.50
 var enemy_bullet_damage = 25
 var enemy_health = 30
@@ -111,11 +137,11 @@ var enemy_points = 100
 var boss_health = 200
 var boss_points = 1000
 
-###################################################
+#########################################################
 #
-#	Global Singleton Methods to start game
+#	Global Singleton Methods to start and restart game
 #
-###################################################
+#########################################################
 
 func _ready():
 	var root = get_tree().get_root()
@@ -126,6 +152,7 @@ func goto_scene(path):
 	var new_scene = s.instance()
 	get_tree().get_root().add_child(new_scene)
 	get_tree().set_current_scene(new_scene)
+	print(current_scene)
 	current_scene.queue_free()
 	current_scene = new_scene
 	
@@ -139,4 +166,5 @@ func new_game():
 	game_over = false
 	score = 0
 	level = 0
-	goto_scene("res://scenes/main.tscn")
+	#goto_scene("res://scenes/leaderboard_table.tscn")
+	get_tree().change_scene("res://scenes/leaderboard_table.tscn")

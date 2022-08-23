@@ -3,6 +3,10 @@ extends CanvasLayer
 var texture_bar = load("res://art/gui/barHorizontal_white_mid.png")
 var color = Global.white
 var label
+var ms = 0
+var s = 0
+var m = 0
+var time_last := ""
 onready var shield_bar = $shield_bar
 onready var message_label = $message
 onready var bronze_gauge = $powerups/bronze
@@ -10,10 +14,27 @@ onready var silver_gauge = $powerups/silver
 onready var gold_gauge = $powerups/gold
 
 func _ready():
+	ms = Global.chrono
 	gold_gauge.value = Global.powerup_counter.gold
 	silver_gauge.value = Global.powerup_counter.silver
 	bronze_gauge.value = Global.powerup_counter.bronze
 	pass # Replace with function body.
+	#set_process(true)
+	$chronometer/ms.wait_time=0.1
+	$chronometer/ms.start()
+
+func _process(delta):
+	chronometer()
+	
+func chronometer():
+	if ms > 9:
+		s += 1
+		ms = 0
+	if s > 59:
+		m += 1
+		s = 0
+	time_last = str(m)+":"+str(s)+":"+str(ms)
+	$chronometer.set_text(time_last)
 
 func _input(event):
 	if event.is_action_pressed("pause_toggle"):
@@ -61,3 +82,7 @@ func show_message(text):
 
 func _on_message_timer_timeout():
 	message_label.hide()
+
+
+func _on_ms_timeout():
+	ms += 1

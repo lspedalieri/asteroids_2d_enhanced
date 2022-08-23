@@ -18,11 +18,17 @@ __meta__ = {
 }
 
 [node name="glow" type="Light2D" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 texture_scale = 0.1
 energy = 4.0
+range_height = 60.0
+shadow_enabled = true
+shadow_color = Color( 0.109804, 0.027451, 0.027451, 0.65098 )
 
 [node name="bullet" type="Sprite" parent="glow"]
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

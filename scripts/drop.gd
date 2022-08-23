@@ -13,7 +13,7 @@ extends KinematicBody2D
 #Direzione randomizzata dei powerup
 var vel = Vector2(rand_range(-100,100), rand_range(-100,100))
 
-var drop_explosion = preload("res://scenes/drop_explosion.tscn")
+var drop_explosion = preload("res://scenes/effects/drop_explosion.tscn")
 
 var extents
 var node_textures = Global.powerup_textures

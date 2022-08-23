@@ -1,9 +1,9 @@
 extends Node
 
 var asteroid = preload("res://scenes/asteroid.tscn")
-var player_explosion = preload("res://scenes/explosion.tscn")
-var asteroid_explosion = preload("res://scenes/asteroid_explosion.tscn")
-var drop_explosion = preload("res://scenes/drop_explosion.tscn")
+var player_explosion = preload("res://scenes/effects/explosion.tscn")
+var asteroid_explosion = preload("res://scenes/effects/asteroid_explosion.tscn")
+var drop_explosion = preload("res://scenes/effects/drop_explosion.tscn")
 
 var enemy = preload("res://scenes/enemy.tscn")
 var drop = preload("res://scenes/drop.tscn")
@@ -27,7 +27,8 @@ func _ready():
 func begin_next_level():
 	Global.level += 1
 	enemy_timer.stop()
-	enemy_timer.set_wait_time(rand_range(5, 5))
+	#enemy_timer.set_wait_time(rand_range(5, 5))
+	enemy_timer.set_wait_time(Global.enemy_timer)
 	enemy_timer.start()
 	HUD.show_message("Wave %s" % Global.level)
 	for i in range(Global.level):
@@ -88,7 +89,10 @@ func explode_player():
 	expl.play()
 	expl.play_explosion_sounds()
 	HUD.show_message(Global.messages['game_over'])
+	var leaderboard_score = {'score' : HUD.get_node("score").text, 'name':'Orloph', 'time': HUD.time_last, 'date':'130000'}
+	Global.leaderboard_data.append(leaderboard_score)
 	restart_timer.start()
+	
 
 func explode_enemy(pos):
 	var expl = player_explosion.instance()

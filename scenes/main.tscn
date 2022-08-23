@@ -44,7 +44,7 @@ shader_param/iMouse = Vector2( 0, 0 )
 pause_mode = 1
 script = ExtResource( 1 )
 
-[node name="Backgrounds" type="Container" parent="."]
+[node name="Backgrounds" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -123,8 +123,10 @@ wait_time = 3.0
 one_shot = true
 
 [node name="enemy_timer" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="drop_timer" type="Timer" parent="Timers"]
 
 [connection signal="pickup" from="player" to="." method="_on_player_pickup"]
 [connection signal="timeout" from="Timers/restart_timer" to="." method="_on_restart_timer_timeout"]
+[connection signal="timeout" from="Timers/enemy_timer" to="." method="_on_enemy_timer_timeout"]

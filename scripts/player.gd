@@ -32,6 +32,9 @@ var friction = Global.space_friction
 #children scenes
 export var bullet = preload("res://scenes/player_bullet.tscn")
 
+#spawned nodes
+var levelup = preload("res://scenes/effects/level_up.tscn")
+
 #children nodes
 onready var bullet_container = get_node("bullet_container")
 onready var gun_timer = get_node("gun_timer")
@@ -45,7 +48,6 @@ onready var main_exhaust = get_node("thrusters/main_exhaust")
 onready var back_exhaust1 = get_node("thrusters/back_exhaust1")
 onready var back_exhaust2 = get_node("thrusters/back_exhaust2")
 
-#spawned nodes
 #--------
 
 
@@ -183,6 +185,7 @@ func checkUpgrades(type):
 				emit_signal("upgrade", "fire rate")
 				fire_rate = Global.fire_rate[new_fire_rate]
 				gun_timer.set_wait_time(fire_rate)
+				levelUp()
 			pass
 		"silver":
 			#print("found upgrade silver")
@@ -191,6 +194,7 @@ func checkUpgrades(type):
 				#print("upgrade thruster")
 				emit_signal("upgrade", "thrusters")
 				thrust = Global.thrust[new_thrust]
+				levelUp()
 			pass
 		"bronze":
 			#print("found upgrade bronze")
@@ -198,5 +202,10 @@ func checkUpgrades(type):
 			if new_rot_speed < 5 and rot_speed != Global.rot[new_rot_speed]:
 				emit_signal("upgrade", "rotation")
 				rot_speed = Global.rot[new_rot_speed]
+				levelUp()
 			pass
 	print(Global.powerup_counter)
+
+func levelUp():
+	var l = levelup.instance()
+	add_child(l)
