@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://art/asteroids/meteorGrey_big1.png" type="Texture" id=1]
+[ext_resource path="res://art/explosions/Furcifer.png" type="Texture" id=2]
+[ext_resource path="res://Light2D.gd" type="Script" id=3]
+[ext_resource path="res://art/Lightsource.png" type="Texture" id=4]
+[ext_resource path="res://art/background.png" type="Texture" id=5]
+[ext_resource path="res://art/asteroids/meteorGrey_big1_n.png" type="Texture" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -43, -45, -52, 9, -24, 45, 9, 34, 34, 37, 55, -1, 27, -43 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+energy = 5.0
+shadow_enabled = true
+shadow_gradient_length = 10.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Light2D"]
+scale = Vector2( 3.78571, 2.53704 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 954, 492 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 1 )
+normal_map = ExtResource( 6 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
+position = Vector2( 1.99994, -1 )
+scale = Vector2( 0.5, 0.5 )
+occluder = SubResource( 1 )
+
+[node name="shader" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.901961 )
+position = Vector2( 962, 539 )
+scale = Vector2( 2.39125, 1.77 )
+texture = ExtResource( 5 )

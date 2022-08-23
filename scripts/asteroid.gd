@@ -46,8 +46,11 @@ func init(init_size, init_pos, init_vel, init_life):
 	set_position(init_pos)
 
 func getTexture():
-	var texture = load(properties[size].textures[randi() % properties[size].textures.size()])
+	var tex_index = randi() % properties[size].textures.size()
+	var texture = load(properties[size].textures[tex_index])
+	var map = load(properties[size].maps[tex_index])
 	get_node("sprite").set_texture(texture)
+	get_node("sprite").normal_map = map
 	extents = texture.get_size() / 2
 	var shape = CircleShape2D.new()
 	#give a proper size of the collision shape of the asteroids
