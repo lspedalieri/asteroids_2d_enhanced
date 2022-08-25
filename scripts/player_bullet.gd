@@ -1,6 +1,7 @@
 extends "res://scripts/bullet.gd"
 
 var lifetime = 10
+var bullet_damage = Global.bullet_damage
 
 func _on_lifetime_timeout():
 	queue_free()
@@ -10,8 +11,8 @@ func _on_player_bullet_body_entered(body):
 		#delete the bullet
 		queue_free()
 		#body explode in 2 pieces in opposite directions
-		body.life -= 1
-		if body.life == 0:
+		body.life -= bullet_damage
+		if body.life <= 0:
 			body.explode(vel.normalized())
 		else:
 			body.life_label.set_text(String(body.life))

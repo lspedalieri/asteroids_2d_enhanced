@@ -21,7 +21,7 @@ func set_data(data:Dictionary):
 	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/1").text = data.name
 	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/2").text = str(data.score)
 	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/3").text = str(data.time)
-	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/4").text = str(data.date)
+	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/4").text = str(Time.get_datetime_dict_from_datetime_string("YYYY-MM-DDTHH:MM:SS", false))
 
 func _ready():
 	for i in range(data.size()):

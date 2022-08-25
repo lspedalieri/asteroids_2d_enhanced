@@ -7,7 +7,9 @@ var ms = 0
 var s = 0
 var m = 0
 var time_last := ""
+var shield_up = true
 onready var shield_bar = $shield_bar
+onready var shield_repair = $shield_repair
 onready var message_label = $message
 onready var bronze_gauge = $powerups/bronze
 onready var silver_gauge = $powerups/silver
@@ -20,11 +22,13 @@ func _ready():
 	bronze_gauge.value = Global.powerup_counter.bronze
 	pass # Replace with function body.
 	#set_process(true)
+	shield_repair.max_value = Global.shield_repair[Global.upgrade_level['shield_regen']]
 	$chronometer/ms.wait_time=0.1
 	$chronometer/ms.start()
 
 func _process(delta):
-	chronometer()
+	if not Global.paused:
+		chronometer()
 	
 func chronometer():
 	if ms > 9:
@@ -49,15 +53,39 @@ func update(player):
 	get_node("shield_val").set_text(str(floor(player.shield_level)))
 	
 func update_shield(shield_level):
-	color = Global.yellow
-	if shield_level < 40:
-		color = Global.red
-	elif shield_level < 70:
+		
+	if shield_level > 70:
+		color = Global.blue
+	elif shield_level > 40:
 		color = Global.yellow
+	elif shield_level > 0:
+		color = Global.red
+
+	if shield_level == 100:
+		color = Global.white
+
+	if shield_level == 0:
+		#shield_repair.value = 0
+		#startShieldRepair()
+		color = Global.black
+
+	if shield_level > 0:
+		shield_bar.show()
+		shield_repair.hide()
+
 	shield_bar.set_tint_progress(color)
 	shield_bar.set_progress_texture(texture_bar)
 	shield_bar.set_value(shield_level)
 
+func startShieldRepair():
+	shield_up = false
+	print("start shield repair")
+	print(shield_repair.max_value)
+	shield_bar.hide()
+	shield_repair.show()
+	$shield_repair.value = 0
+	$shield_repair_timer.wait_time = shield_repair.max_value
+	$shield_repair_timer.start()
 
 func updatePowerups():
 	for node in $powerups.get_children():
@@ -86,3 +114,18 @@ func _on_message_timer_timeout():
 
 func _on_ms_timeout():
 	ms += 1
+	$shield_repair.value+=0.1
+
+
+func _on_shield_repair_timer_timeout():
+	shield_up = true
+	shield_bar.show()
+	shield_bar.value = 1
+	shield_repair.hide()
+
+
+func _on_Quit_pressed():
+	get_tree().change_scene("res://scenes/leaderboard_table.tscn")
+	Global.paused = not Global.paused
+	get_tree().set_pause(Global.paused)
+	#get_tree().root.queue_free()

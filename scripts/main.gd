@@ -22,6 +22,7 @@ func _ready():
 	get_node("music/backmusic1").play()
 	player.connect("explode", self, "explode_player")
 	player.connect("upgrade", self, "upgrade_message")
+	player.connect("shield_down", self, "shield_repair")
 	begin_next_level()
 	
 func begin_next_level():
@@ -129,3 +130,7 @@ func _on_player_pickup(body):
 	
 func upgrade_message(message):
 	HUD.show_message(message + " Upgraded")
+
+func shield_repair():
+	HUD.startShieldRepair()
+	

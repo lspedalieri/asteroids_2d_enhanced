@@ -17,14 +17,16 @@ extends Area2D
 signal explode
 signal pickup
 signal upgrade
+signal shield_down
 
 #Var from Global
 var fire_rate = Global.fire_rate[Global.upgrade_level['fire_rate']]
 var rot_speed = Global.rot[Global.upgrade_level['rot']]
 var thrust = Global.thrust[Global.upgrade_level['thrust']]
-var shield_regen = Global.shield_level[Global.upgrade_level['shield_regen']]
+var shield_regen = Global.shield_regen[Global.upgrade_level['shield_regen']]
+var shield_repair_time = Global.shield_repair[Global.upgrade_level['shield_repair']]
 var shield_max = Global.shield_max
-var shield_level = Global.shield_max / 2 #?????????????
+var shield_level = Global.shield_level 
 var max_vel = Global.player_max_vel
 var deceleration = Global.player_deceleration_factor
 var friction = Global.space_friction
@@ -86,11 +88,15 @@ func setShoots():
 func setShield(delta):
 	if shield_up :
 		shield_level = min(shield_level + shield_regen * delta, shield_max)
+		#get_node("shield").show()
 		if shield_level <= 0 and shield_up:
 			shield_up = false
 			shield_level = 0
 			get_node("shield").hide()
-
+		if not shield_up:
+			emit_signal("shield_down")
+			$shield_timer.wait_time = shield_repair_time
+			$shield_timer.start()
 
 func setInputs(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -209,3 +215,8 @@ func checkUpgrades(type):
 func levelUp():
 	var l = levelup.instance()
 	add_child(l)
+
+
+func _on_shield_timer_timeout():
+	shield_up = true
+	shield_level = 1

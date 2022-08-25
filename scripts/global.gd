@@ -45,16 +45,17 @@ var white = Color( 1, 1, 1, 1 )
 
 #space settings
 var space_friction = 0.05
+var background
 
 #HUD settings
 var messages = {'game_over': 'Game Over'}
 
-
 #player settings
 var shield_max = 100
+var shield_level = 0
 var player_max_vel = 300
 var player_deceleration_factor = 0.05
-var shield_regen = 10
+#var shield_regen = 10
 var bullet_damage = 10
 var cash = 0
 var upgrade_level = {
@@ -63,13 +64,15 @@ var upgrade_level = {
 	'rot':0,
 	'manouver':1,
 	'shield_regen':0,
-	'guns':1,
+	'shield_repair':0,
+	'damage':10,
 	'shield':50
 }
 var fire_rate = {0:0.5, 1:0.4, 2:0.3, 3:0.2, 4:0.1}
 var thrust = {0:100, 1:200, 2:400, 3:600, 4:800}
 var rot = {0:1, 1:1.5, 2:2.5, 3:3.5, 4:4.5}
-var shield_level = {0:2.5, 1:5, 2:7.5, 3:10, 4:15}
+var shield_regen = {0:10.0, 1:5, 2:7.5, 3:10, 4:15}
+var shield_repair = {0:20, 1:15, 2:10, 3:5, 4:3}
 var powerup_counter := {
 	"gold":0, 	#fire rate upgrade
 	"silver":0, #thruster upgrade
@@ -92,7 +95,7 @@ var asteroid_properties = {
 			'maps': ['res://art/asteroids/meteorGrey_big1_n.png',
 						'res://art/asteroids/meteorGrey_big3_n.png',
 						'res://art/asteroids/meteorGrey_big4_n.png'],						
-			 'life': 4,
+			 'life': 40,
 			 'damage': 40,
 			 'points': 10,
 			 'drop_chance': 0.5
@@ -101,7 +104,7 @@ var asteroid_properties = {
 						'res://art/asteroids/meteorGrey_med2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_med1_n.png',
 						'res://art/asteroids/meteorGrey_med2_n.png'],
-			 'life': 3,
+			 'life': 30,
 			 'damage': 25,
 			 'points': 15,
 			 'drop_chance': 0.6
@@ -110,7 +113,7 @@ var asteroid_properties = {
 					   'res://art/asteroids/meteorGrey_small2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_small1_n.png',
 					   'res://art/asteroids/meteorGrey_small2_n.png'],
-			 'life': 2,
+			 'life': 20,
 			 'damage': 15,
 			 'points': 20,
 			 'drop_chance': 0.8
@@ -119,7 +122,7 @@ var asteroid_properties = {
 						 'res://art/asteroids/meteorGrey_tiny2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_tiny1_n.png',
 						 'res://art/asteroids/meteorGrey_tiny2_n.png'],
-			 'life': 1,
+			 'life': 10,
 			 'damage': 10,
 			 'points': 40,
 			 'drop_chance': 0.95
