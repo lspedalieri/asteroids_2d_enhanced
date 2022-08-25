@@ -23,7 +23,7 @@ margin_right = 1920.0
 margin_bottom = 35.0
 
 [node name="1" type="Label" parent="."]
-margin_right = 477.0
+margin_right = 380.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 4 )
@@ -33,8 +33,8 @@ valign = 1
 uppercase = true
 
 [node name="2" type="Label" parent="."]
-margin_left = 481.0
-margin_right = 958.0
+margin_left = 384.0
+margin_right = 765.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 5 )
@@ -44,8 +44,8 @@ valign = 1
 uppercase = true
 
 [node name="3" type="Label" parent="."]
-margin_left = 962.0
-margin_right = 1439.0
+margin_left = 769.0
+margin_right = 1150.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 6 )
@@ -55,12 +55,23 @@ valign = 1
 uppercase = true
 
 [node name="4" type="Label" parent="."]
-margin_left = 1443.0
-margin_right = 1920.0
+margin_left = 1154.0
+margin_right = 1535.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "Date"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="5" type="Label" parent="."]
+margin_left = 1539.0
+margin_right = 1920.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 7 )
+text = "accuracy"
 align = 1
 valign = 1
 uppercase = true

@@ -1,7 +1,15 @@
+##############################################
+#
+#	Start singleton scene
+#	Main variables, object templates, starting methods
+#
+##############################################
+
 extends Node
 
 #global game settings
 
+var start_scene = "res://scenes/leaderboard_table.tscn"
 var game_over = false
 var score = 0
 var chrono = 0
@@ -10,28 +18,32 @@ var paused = false
 var current_scene = null
 var new_scene = null
 var leaderboard_data = [{
-	"date":1100000,
+	"accuracy": 0,
+	"date":1704715200,
 	"name":"Orloph",
-	"score":"1000",
-	"time":"1000"
+	"score":1000,
+	"time":1000
 },
 {
-	"date":1100000,
+	"accuracy": 0,
+	"date":1704715200,
 	"name":"Orloph",
-	"score":"1000",
-	"time":"1000"
+	"score":1000,
+	"time":1000
 },
 {
-	"date":1100000,
+	"accuracy": 0,
+	"date":1704715200,
 	"name":"Orloph",
-	"score":"1000",
-	"time":"1000"
+	"score":1000,
+	"time":1000
 },
 {
-	"date":1100000,
+	"accuracy": 0,
+	"date":1704715200,
 	"name":"Orloph",
-	"score":"1000",
-	"time":"1000"
+	"score":1000,
+	"time":1000
 }]
 
 
@@ -47,17 +59,22 @@ var white = Color( 1, 1, 1, 1 )
 var space_friction = 0.05
 var background
 
+#tricks: da usare nelle modalità "storia/quest"
+var powerups_drop = true
+var powerups_get = true
+
 #HUD settings
 var messages = {'game_over': 'Game Over'}
 
 #player settings
 var shield_max = 100
-var shield_level = 0
+var shield_level = 50
 var player_max_vel = 300
 var player_deceleration_factor = 0.05
-#var shield_regen = 10
 var bullet_damage = 10
 var cash = 0
+var player_shoot_counter = 0
+var hits = 0
 var upgrade_level = {
 	'thrust':0,
 	'fire_rate':0,
@@ -71,8 +88,9 @@ var upgrade_level = {
 var fire_rate = {0:0.5, 1:0.4, 2:0.3, 3:0.2, 4:0.1}
 var thrust = {0:100, 1:200, 2:400, 3:600, 4:800}
 var rot = {0:1, 1:1.5, 2:2.5, 3:3.5, 4:4.5}
-var shield_regen = {0:10.0, 1:5, 2:7.5, 3:10, 4:15}
+var shield_regen = {0:2.5, 1:5, 2:7.5, 3:10, 4:15}
 var shield_repair = {0:20, 1:15, 2:10, 3:5, 4:3}
+#var shield_max = {0:100, 1:150, 2:200, 3:300, 4:400}
 var powerup_counter := {
 	"gold":0, 	#fire rate upgrade
 	"silver":0, #thruster upgrade
@@ -81,7 +99,6 @@ var powerup_counter := {
 
 
 #asteroid settings
-#var asteroid_drop_chance = 0.95
 var spawn_locations_num = 8
 var asteroid_max_vel = 300
 var explode_distance = 25
@@ -128,11 +145,9 @@ var asteroid_properties = {
 			 'drop_chance': 0.95
 			}
 }
-var asteroid_drop_chance = {'big' : 0.5, 'med' : 0.6, 'sm' : 0.8, 'tiny' : 0.95}
-var asteroid_life = {'big' : 4, 'med' : 3, 'sm': 2, 'tiny' : 1}
 
 #enemy settings
-var enemy_timer = 60
+var enemy_timer = 5
 var enemy_drop_chance = 0.50
 var enemy_bullet_damage = 25
 var enemy_health = 30
@@ -164,10 +179,11 @@ var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
 						"silver":'res://art/powerups/star_silver.png',
 						"gold":'res://art/powerups/star_gold.png'}
 var powerup_lifetime = 15
-						
+
+#Opening in start screen
 func new_game():
 	game_over = false
 	score = 0
 	level = 0
 	#goto_scene("res://scenes/leaderboard_table.tscn")
-	get_tree().change_scene("res://scenes/leaderboard_table.tscn")
+	get_tree().change_scene(start_scene)

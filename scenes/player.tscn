@@ -59,7 +59,7 @@ shader_param/line_color = Color( 0.3, 0, 1, 1 )
 shader_param/line_thickness = 1.0
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 34.0
+radius = 40.0195
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 9 )

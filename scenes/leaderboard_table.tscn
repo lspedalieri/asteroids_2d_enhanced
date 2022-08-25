@@ -66,7 +66,7 @@ margin_right = 1793.0
 margin_bottom = 42.0
 
 [node name="name" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_right = 443.0
+margin_right = 354.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
@@ -75,8 +75,8 @@ align = 1
 valign = 1
 
 [node name="score" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 447.0
-margin_right = 891.0
+margin_left = 358.0
+margin_right = 712.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
@@ -85,8 +85,8 @@ align = 1
 valign = 1
 
 [node name="time" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 895.0
-margin_right = 1338.0
+margin_left = 716.0
+margin_right = 1070.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
@@ -95,12 +95,22 @@ align = 1
 valign = 1
 
 [node name="date" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
-margin_left = 1342.0
-margin_right = 1786.0
+margin_left = 1074.0
+margin_right = 1428.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 4 )
 text = "date"
+align = 1
+valign = 1
+
+[node name="accuracy" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+margin_left = 1432.0
+margin_right = 1786.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "accuracy"
 align = 1
 valign = 1
 

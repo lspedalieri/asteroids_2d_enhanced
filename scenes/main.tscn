@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Shaders/StarNest.gdshader" type="Shader" id=8]
 [ext_resource path="res://Shaders/electro_shader.gdshader" type="Shader" id=9]
 [ext_resource path="res://Shaders/simple_stars.gdshader" type="Shader" id=10]
+[ext_resource path="res://Shaders/fireworks.gdshader" type="Shader" id=11]
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 5 )
@@ -55,6 +56,14 @@ shader_param/scale = Vector2( 2, 16 )
 shader = ExtResource( 10 )
 shader_param/bg_color = null
 
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 11 )
+shader_param/PI = 3.14159
+shader_param/TWOPI = 6.28319
+shader_param/NUM_EXPLOSIONS = 1.0
+shader_param/NUM_PARTICLES = 70.0
+shader_param/MOD3 = Vector3( 0.031, 0.11369, 0.13787 )
+
 [node name="main" type="Node"]
 pause_mode = 1
 script = ExtResource( 1 )
@@ -97,6 +106,12 @@ color = Color( 0.211765, 0.0392157, 0.929412, 1 )
 
 [node name="SimpleStarsSky" type="ColorRect" parent="Backgrounds"]
 material = SubResource( 14 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Fireworks" type="ColorRect" parent="Backgrounds"]
+visible = false
+material = SubResource( 16 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 

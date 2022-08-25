@@ -30,6 +30,7 @@ var shield_level = Global.shield_level
 var max_vel = Global.player_max_vel
 var deceleration = Global.player_deceleration_factor
 var friction = Global.space_friction
+var shoot_counter = 0
 
 #children scenes
 export var bullet = preload("res://scenes/player_bullet.tscn")
@@ -138,6 +139,7 @@ func setMovements():
 		pos.y = screen_size.y
 
 func shoot():
+	Global.player_shoot_counter += 1
 	gun_timer.start()
 	var b = bullet.instance()
 	bullet_container.add_child(b)
@@ -153,8 +155,14 @@ func damage(amount):
 	if shield_up:
 		shield_level -= amount
 	else:
+		print ("hits and shoots")
+		print(Global.hits)
+		print(Global.player_shoot_counter)
+
+		var accuracy:float = (float(Global.hits)/float(Global.player_shoot_counter))*100
+		print(accuracy)
 		disable()
-		emit_signal("explode")
+		emit_signal("explode", accuracy)
 
 #gestisce l'evento body entered per i vari oggetti e gruppi
 func _on_player_body_entered(body):

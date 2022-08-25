@@ -15,10 +15,9 @@ polygon = PoolVector2Array( -43, -45, -52, 9, -24, 45, 9, 34, 34, 37, 55, -1, 27
 [node name="Node2D" type="Node2D"]
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 950, 688 )
-scale = Vector2( 2, 2 )
+position = Vector2( 952, 587 )
 texture = ExtResource( 4 )
-energy = 5.84
+energy = 4.0
 range_height = 60.0
 shadow_enabled = true
 shadow_gradient_length = 10.0
@@ -31,6 +30,7 @@ __meta__ = {
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 954, 492 )
 texture = ExtResource( 1 )
 normal_map = ExtResource( 6 )
@@ -49,5 +49,6 @@ texture = ExtResource( 5 )
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 954, 492 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 7 )
 normal_map = ExtResource( 8 )
