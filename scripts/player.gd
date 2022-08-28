@@ -69,9 +69,10 @@ func _ready():
 	set_process(true)
 
 #Main game loop
+#Calls the player main processes: movement, shoots, shield
 func _process(delta):
 	vel = vel.clamped(max_vel)
-	setShield(delta)
+	manageShield(delta)
 	setShoots()
 	setInputs(delta)
 	acc += vel * -friction
@@ -81,12 +82,13 @@ func _process(delta):
 	set_position(pos)
 	set_rotation(rot - PI/2)
 
+#Manage the cooldown of the player weapon. The fire is continue if the shoot button is pressed, 
 func setShoots():
 	if Input.is_action_pressed("player_shoot"):
 		if gun_timer.get_time_left() == 0:
 			shoot()
 
-func setShield(delta):
+func manageShield(delta):
 	if shield_up :
 		shield_level = min(shield_level + shield_regen * delta, shield_max)
 		#get_node("shield").show()
@@ -96,10 +98,11 @@ func setShield(delta):
 			get_node("shield").hide()
 		if not shield_up:
 			emit_signal("shield_down")
-			$shielddown.play()
+			$sounds/shield/shielddown.play()
 			$shield_timer.wait_time = shield_repair_time
 			$shield_timer.start()
 
+#Manage movements, rotation and the related thrusters effects
 func setInputs(delta):
 	if Input.is_action_pressed("ui_right"):
 		rot += rot_speed * delta
@@ -129,6 +132,7 @@ func setInputs(delta):
 		back_exhaust1.hide()
 		back_exhaust2.hide()
 
+#Manage movements outside the screen
 func setMovements():
 	if pos.x > screen_size.x:
 		pos.x = 0
@@ -139,6 +143,7 @@ func setMovements():
 	if pos.y < 0:
 		pos.y = screen_size.y
 
+#Manage the single weapon shoot
 func shoot():
 	Global.player_shoot_counter += 1
 	gun_timer.start()
@@ -146,45 +151,53 @@ func shoot():
 	bullet_container.add_child(b)
 	b.start_at(get_rotation() - PI, get_node("muzzle").get_global_position())
 	fire.get_child(randi() % (2)).play()
-	
+
+#stops the player ship processes and hides it
 func disable():
 	hide()
 	set_process(false)
 	call_deferred("set_enable_monitoring", false)
 
-func damage(amount):
-	if shield_up:
-		$shieldhit.play()
-		shield_level -= amount
-	else:
-		$explosion.play()
-		print ("hits and shoots")
-		print(Global.hits)
-		print(Global.player_shoot_counter)
-		var accuracy:float = 0.0
-		if Global.player_shoot_counter > 0:
-			accuracy = (float(Global.hits)/float(Global.player_shoot_counter))*100
-		print(accuracy)
-		disable()
-		emit_signal("explode", accuracy)
-
-#gestisce l'evento body entered per i vari oggetti e gruppi
+#gestisce l'evento body entered per i vari oggetti e gruppi, gli eventuali danni
 func _on_player_body_entered(body):
+	print("object entered in player area")
+	if !is_visible():
+		print("is not visible")
+		return
 	if body.get_groups().has("asteroids"):
-		if !is_visible():
-			return
-		if body.is_in_group("asteroids"):
-			if shield_up:
-				body.explode(vel)
-				damage(Global.asteroid_properties[body.size].damage)
-			else:
-				emit_signal("explode")
+		if shield_up:
+			body.explode(vel)
+			$sounds/shield/shieldhit.play()
+			shield_level -= Global.asteroid_properties[body.size].damage
+		else:
+			#emit_signal("explode")
+			explode()
+	if body.is_in_group("enemy_bullet"):
+		if shield_up:
+			$sounds/shield/shieldhit.play()
+			shield_level -= Global.enemy_bullet_damage
+		else:
+			#emit_signal("explode")
+			explode()
 	if body.get_groups().has("powerups"):
 		if !is_visible():
 			return
 		if body.is_in_group("powerups"):
 			collectPowerup(body)
-			
+
+func explode():
+	$sounds/explosion.play()
+	print ("hits and shoots")
+	print(Global.hits)
+	print(Global.player_shoot_counter)
+	var accuracy:float = 0.0
+	if Global.player_shoot_counter > 0:
+		accuracy = (float(Global.hits)/float(Global.player_shoot_counter))*100
+	print(accuracy)
+	disable()
+	emit_signal("explode", accuracy)
+
+#Manage the collecting of powerups
 func collectPowerup(body):
 	#print("collected ",body.type)
 	Global.powerup_counter[body.type] += 1
@@ -192,9 +205,11 @@ func collectPowerup(body):
 	pickup()
 	checkUpgrades(body.type)
 	
+#manage when player pickups something
 func pickup():
-	$pickup.play()
+	$sounds/pickup.play()
 
+#manage the upgrade system
 func checkUpgrades(type):
 	#print("check upgrade ", type)
 	if Global.powerups_blocked == true:
@@ -232,13 +247,14 @@ func checkUpgrades(type):
 			pass
 	print(Global.powerup_counter)
 
+#Manage the upgrade effects
 func levelUp():
 	var l = levelup.instance()
-	$levelup.play()
+	$sounds/levelup.play()
 	add_child(l)
 
-
+#Shield repaired event
 func _on_shield_timer_timeout():
-	$shieldup.play()
+	$sounds/shield/shieldup.play()
 	shield_up = true
 	shield_level = 1

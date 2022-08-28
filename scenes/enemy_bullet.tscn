@@ -7,8 +7,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
 
-[node name="enemy_bullet" type="Area2D"]
+[node name="enemy_bullet" type="Area2D" groups=["enemy_bullet"]]
 position = Vector2( 1023, 543 )
+collision_layer = 32
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

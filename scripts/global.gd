@@ -173,7 +173,7 @@ var asteroid_properties = {
 }
 
 #enemy settings
-var enemy_timer = 60
+var enemy_timer = 3
 var enemy_drop_chance = 0.95
 var enemy_bullet_damage = 25
 var enemy_health = 30
