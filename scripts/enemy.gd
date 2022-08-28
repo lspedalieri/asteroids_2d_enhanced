@@ -53,14 +53,17 @@ func shoot1():
 	bullet_container.add_child(b)
 	b.start_at(dir.angle() + PI/2, get_global_position())
 
-#colpo triplo a ventaglio
-func shoot3():
+#colpo multiplo a ventaglio. Il numero di colpi forma automaticamente un cerchio 
+func shootCircle(n):
 	var dir = get_global_position() - target.get_global_position()
-	for a in [-0.2, 0, 0.2]:
+	var rad = 0.0174 * (360/n)
+	for a in n:
+		var angle = a * rad
 		enemy_laser.play()
 		var b = bullet.instance()
 		bullet_container.add_child(b)
-		b.start_at(dir.angle() + a, get_global_position())
+		b.start_at(dir.angle() + angle, get_global_position())
+
 
 #colpo multiplo a raffica
 func shoot_pulse(n, delay):
@@ -76,6 +79,7 @@ func _on_shoot_timer_timeout():
 			shoot_pulse(3, 0.1)
 		else:
 			shoot1()
+			shootCircle(rand_range(1, Global.level))
 
 func damage(amount):
 	health -= amount

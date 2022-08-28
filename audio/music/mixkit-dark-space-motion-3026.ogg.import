@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-dark-space-motion-3026.ogg-73cd627ac81ce9bd1735115be4774cd6.oggstr"
+
+[deps]
+
+source_file="res://audio/music/mixkit-dark-space-motion-3026.ogg"
+dest_files=[ "res://.import/mixkit-dark-space-motion-3026.ogg-73cd627ac81ce9bd1735115be4774cd6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-glitchy-sci-fi-bass-suspense-686.ogg-4eb05184d1af5831a04e0bba5657a3e2.oggstr"
+
+[deps]
+
+source_file="res://audio/music/mixkit-glitchy-sci-fi-bass-suspense-686.ogg"
+dest_files=[ "res://.import/mixkit-glitchy-sci-fi-bass-suspense-686.ogg-4eb05184d1af5831a04e0bba5657a3e2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

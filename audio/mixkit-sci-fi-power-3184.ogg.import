@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-power-3184.ogg-75fc110296d444b4d9d3cbed69d66a37.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-power-3184.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-power-3184.ogg-75fc110296d444b4d9d3cbed69d66a37.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

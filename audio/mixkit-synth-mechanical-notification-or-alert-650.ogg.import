@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-synth-mechanical-notification-or-alert-650.ogg-a9caa69484a9c1fe54f66771554489e7.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-synth-mechanical-notification-or-alert-650.ogg"
+dest_files=[ "res://.import/mixkit-synth-mechanical-notification-or-alert-650.ogg-a9caa69484a9c1fe54f66771554489e7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

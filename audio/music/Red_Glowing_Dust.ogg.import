@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Red_Glowing_Dust.ogg-0ace51800a47de28b6c8d1735c2f805b.oggstr"
+
+[deps]
+
+source_file="res://audio/music/Red_Glowing_Dust.ogg"
+dest_files=[ "res://.import/Red_Glowing_Dust.ogg-0ace51800a47de28b6c8d1735c2f805b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

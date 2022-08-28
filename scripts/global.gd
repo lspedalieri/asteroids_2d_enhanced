@@ -75,6 +75,7 @@ var bullet_damage = 10
 var cash = 0
 var player_shoot_counter = 0
 var hits = 0
+var powerups_blocked = false
 var upgrade_level = {
 	'thrust':0,
 	'fire_rate':0,
@@ -105,13 +106,23 @@ var explode_distance = 25
 var asteroid_sizes = ["big", "med", "sm", "tiny"]
 var break_pattern = {'big' : 'med', 'med' : 'sm', 'sm' : 'tiny', 'tiny' : null}
 var asteroid_template = {'size':'','life':'','damage':'','points':'','drop_chance':'','texture':'', 'vel':Vector2(0,0), 'pos':Vector2(0,0)}
+var asteroid_explosion_sounds = ["res://audio/scifi/explosionCrunch_000.ogg", 
+						"res://audio/scifi/explosionCrunch_001.ogg", 
+						"res://audio/scifi/explosionCrunch_002.ogg", 
+						"res://audio/scifi/explosionCrunch_003.ogg", 
+						"res://audio/scifi/explosionCrunch_004.ogg"]
 var asteroid_properties = {
 	'big' : {'textures': ['res://art/asteroids/meteorGrey_big1.png',
 						'res://art/asteroids/meteorGrey_big3.png',
 						'res://art/asteroids/meteorGrey_big4.png'],
 			'maps': ['res://art/asteroids/meteorGrey_big1_n.png',
 						'res://art/asteroids/meteorGrey_big3_n.png',
-						'res://art/asteroids/meteorGrey_big4_n.png'],						
+						'res://art/asteroids/meteorGrey_big4_n.png'],
+			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
+						"res://audio/scifi/explosionCrunch_001.ogg", 
+						"res://audio/scifi/explosionCrunch_002.ogg", 
+						"res://audio/scifi/explosionCrunch_003.ogg", 
+						"res://audio/scifi/explosionCrunch_004.ogg"],
 			 'life': 40,
 			 'damage': 40,
 			 'points': 10,
@@ -121,6 +132,11 @@ var asteroid_properties = {
 						'res://art/asteroids/meteorGrey_med2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_med1_n.png',
 						'res://art/asteroids/meteorGrey_med2_n.png'],
+			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
+						"res://audio/scifi/explosionCrunch_001.ogg", 
+						"res://audio/scifi/explosionCrunch_002.ogg", 
+						"res://audio/scifi/explosionCrunch_003.ogg", 
+						"res://audio/scifi/explosionCrunch_004.ogg"],
 			 'life': 30,
 			 'damage': 25,
 			 'points': 15,
@@ -130,6 +146,11 @@ var asteroid_properties = {
 					   'res://art/asteroids/meteorGrey_small2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_small1_n.png',
 					   'res://art/asteroids/meteorGrey_small2_n.png'],
+			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
+						"res://audio/scifi/explosionCrunch_001.ogg", 
+						"res://audio/scifi/explosionCrunch_002.ogg", 
+						"res://audio/scifi/explosionCrunch_003.ogg", 
+						"res://audio/scifi/explosionCrunch_004.ogg"],
 			 'life': 20,
 			 'damage': 15,
 			 'points': 20,
@@ -139,6 +160,11 @@ var asteroid_properties = {
 						 'res://art/asteroids/meteorGrey_tiny2.png'],
 			'maps': ['res://art/asteroids/meteorGrey_tiny1_n.png',
 						 'res://art/asteroids/meteorGrey_tiny2_n.png'],
+			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
+						"res://audio/scifi/explosionCrunch_001.ogg", 
+						"res://audio/scifi/explosionCrunch_002.ogg", 
+						"res://audio/scifi/explosionCrunch_003.ogg", 
+						"res://audio/scifi/explosionCrunch_004.ogg"],
 			 'life': 10,
 			 'damage': 10,
 			 'points': 40,
@@ -147,8 +173,8 @@ var asteroid_properties = {
 }
 
 #enemy settings
-var enemy_timer = 5
-var enemy_drop_chance = 0.50
+var enemy_timer = 60
+var enemy_drop_chance = 0.95
 var enemy_bullet_damage = 25
 var enemy_health = 30
 var enemy_points = 100
@@ -178,6 +204,8 @@ func goto_scene(path):
 var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
 						"silver":'res://art/powerups/star_silver.png',
 						"gold":'res://art/powerups/star_gold.png'}
+var powerup_points = {"bronze":50, "silver":100, "gold":200}
+
 var powerup_lifetime = 15
 
 #Opening in start screen

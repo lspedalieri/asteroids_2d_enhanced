@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-long-sweeping-air-swoosh-167.ogg-495160c73e53233598836e8c0e2d28ae.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-long-sweeping-air-swoosh-167.ogg"
+dest_files=[ "res://.import/mixkit-long-sweeping-air-swoosh-167.ogg-495160c73e53233598836e8c0e2d28ae.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

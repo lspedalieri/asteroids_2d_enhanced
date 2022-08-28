@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-laser-weapon-shot-1681.ogg-b6e727b36c77855fe105be60dfcc9632.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-laser-weapon-shot-1681.ogg"
+dest_files=[ "res://.import/mixkit-laser-weapon-shot-1681.ogg-b6e727b36c77855fe105be60dfcc9632.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

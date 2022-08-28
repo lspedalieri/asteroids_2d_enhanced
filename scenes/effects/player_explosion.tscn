@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/effects/enemy_explosion.tres" type="Material" id=1]
+[ext_resource path="res://scripts/player_explosion.gd" type="Script" id=2]
+[ext_resource path="res://audio/mixkit-sea-mine-explosion-1184.ogg" type="AudioStream" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Curve" id=2]
+max_value = 300.0
+_data = [ Vector2( 0, 300 ), 0.0, -12.9524, 0, 0, Vector2( 0.225275, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 140, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.3
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.4
+linear_accel_curve = SubResource( 3 )
+
+[node name="player_explosion" type="Particles2D"]
+material = SubResource( 1 )
+amount = 200
+lifetime = 0.5
+explosiveness = 0.5
+process_material = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="shards" type="Particles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 0.4
+explosiveness = 0.8
+process_material = SubResource( 4 )
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )

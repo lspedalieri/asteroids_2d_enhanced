@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-futuristic-space-intro-2523.ogg-3db6a3222baf363545477ba682abbef4.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-futuristic-space-intro-2523.ogg"
+dest_files=[ "res://.import/mixkit-futuristic-space-intro-2523.ogg-3db6a3222baf363545477ba682abbef4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

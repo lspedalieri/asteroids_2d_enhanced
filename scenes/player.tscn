@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://addons/SpaceShooterRedux/PNG/playerShip2_orange.png" type="Texture" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://audio/laser1.wav" type="AudioStream" id=7]
 [ext_resource path="res://addons/SpaceShooterRedux/PNG/Effects/fire15.png" type="Texture" id=8]
 [ext_resource path="res://Shaders/shield.gdshader" type="Shader" id=9]
+[ext_resource path="res://audio/mixkit-fast-sci-fi-bleep-903.ogg" type="AudioStream" id=10]
+[ext_resource path="res://audio/mixkit-apocalyptic-stomp-impact-3057.ogg" type="AudioStream" id=11]
+[ext_resource path="res://audio/mixkit-sea-mine-explosion-1184.ogg" type="AudioStream" id=12]
+[ext_resource path="res://audio/scifi/forceField_001.ogg" type="AudioStream" id=13]
+[ext_resource path="res://audio/mixkit-sci-fi-confirmation-914.ogg" type="AudioStream" id=14]
+[ext_resource path="res://audio/shield_down.wav" type="AudioStream" id=15]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -161,6 +167,25 @@ frames = SubResource( 2 )
 [node name="shield_timer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[node name="levelup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+
+[node name="shieldup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="shielddown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+
+[node name="shieldhit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
 
 [connection signal="body_entered" from="." to="." method="_on_player_body_entered"]
 [connection signal="timeout" from="shield_timer" to="." method="_on_shield_timer_timeout"]

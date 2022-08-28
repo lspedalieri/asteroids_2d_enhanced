@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-scanning-sci-fi-alarm-905.ogg-9604fba65089aac8164fa7997af3f1e1.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-scanning-sci-fi-alarm-905.ogg"
+dest_files=[ "res://.import/mixkit-scanning-sci-fi-alarm-905.ogg-9604fba65089aac8164fa7997af3f1e1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

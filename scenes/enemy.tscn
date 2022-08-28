@@ -113,5 +113,10 @@ anims/rotate = SubResource( 3 )
 [node name="enemy_laser" type="AudioStreamPlayer2D" parent="sounds"]
 stream = ExtResource( 4 )
 
+[node name="music" type="AudioStreamPlayer2D" parent="sounds"]
+
+[node name="multi_shoot" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="screen_exited" from="visible" to="." method="_on_visible_screen_exited"]
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

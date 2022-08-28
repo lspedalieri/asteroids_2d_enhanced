@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-machine-deep-hum-2137.ogg-8f5acb7aaf884b2b50a48adfdada652a.oggstr"
+
+[deps]
+
+source_file="res://audio/music/mixkit-sci-fi-machine-deep-hum-2137.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-machine-deep-hum-2137.ogg-8f5acb7aaf884b2b50a48adfdada652a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

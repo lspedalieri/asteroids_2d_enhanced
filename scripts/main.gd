@@ -13,7 +13,7 @@ extends Node
 var asteroid = preload("res://scenes/asteroid.tscn")
 var enemy = preload("res://scenes/enemy.tscn")
 var drop = preload("res://scenes/drop.tscn")
-var player_explosion = preload("res://scenes/effects/explosion.tscn")
+var player_explosion = preload("res://scenes/effects/player_explosion.tscn")
 var asteroid_explosion = preload("res://scenes/effects/asteroid_explosion.tscn")
 var drop_explosion = preload("res://scenes/effects/drop_explosion.tscn")
 var enemy_explosion = preload("res://scenes/effects/enemy_explosion.tscn")
@@ -113,7 +113,7 @@ func explode_asteroid(size, pos, vel, hit_vel):
 	$explosion_container.add_child(expl)
 	expl.set_scale(Vector2(1.0 / (Global.break_pattern.keys().find(size) + 1), 1.0 / (Global.break_pattern.keys().find(size) + 1)))
 	expl.set_position(pos)
-	#expl.play_explosion_sounds()
+	expl.play_explosion_sounds()
 	if randf() < Global.asteroid_properties[size].drop_chance:
 		spawn_powerup(pos)
 
@@ -121,9 +121,9 @@ func explode_player(accuracy):
 	print("accuracy")
 	print(accuracy)
 	player.disable()
-
-	var expl = enemy_explosion.instance()
+	var expl = player_explosion.instance()
 	$explosion_container.add_child(expl)
+	expl.play_explosion_sounds()
 	#expl.set_scale(Vector2(1.0 / (Global.break_pattern.keys().find(size) + 1), 1.0 / (Global.break_pattern.keys().find(size) + 1)))
 	expl.set_position(player.pos)
 	
@@ -143,8 +143,11 @@ func explode_player(accuracy):
 func explode_enemy(pos):
 	var expl = enemy_explosion.instance()
 	$explosion_container.add_child(expl)
+	expl.play_explosion_sounds()
 	#expl.set_scale(Vector2(1.0 / (Global.break_pattern.keys().find(size) + 1), 1.0 / (Global.break_pattern.keys().find(size) + 1)))
 	expl.set_position(pos)
+	for a in Global.level * 2:
+		spawn_powerup(pos)
 
 func explode_drop(pos):
 	var expl = drop_explosion.instance()

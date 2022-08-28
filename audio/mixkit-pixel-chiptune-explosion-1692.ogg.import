@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-pixel-chiptune-explosion-1692.ogg-dd1e48a8e55a329f68e79952a6b5f939.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-pixel-chiptune-explosion-1692.ogg"
+dest_files=[ "res://.import/mixkit-pixel-chiptune-explosion-1692.ogg-dd1e48a8e55a329f68e79952a6b5f939.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

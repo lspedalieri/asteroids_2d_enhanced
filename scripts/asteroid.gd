@@ -95,4 +95,5 @@ func explode(hit_vel):
 	call_deferred("queue_free")
 	
 func fracking():
+	$sounds/fracking_big.play()
 	$fracking.play("fracking")

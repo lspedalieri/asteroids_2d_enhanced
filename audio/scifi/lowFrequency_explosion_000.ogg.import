@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lowFrequency_explosion_000.ogg-5bbe8ff41ec92583ea1e43a0dfeb723c.oggstr"
+
+[deps]
+
+source_file="res://audio/scifi/lowFrequency_explosion_000.ogg"
+dest_files=[ "res://.import/lowFrequency_explosion_000.ogg-5bbe8ff41ec92583ea1e43a0dfeb723c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

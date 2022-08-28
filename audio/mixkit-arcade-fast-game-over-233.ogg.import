@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-arcade-fast-game-over-233.ogg-3cb69b020d5b6385be79bc576f34ff46.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-arcade-fast-game-over-233.ogg"
+dest_files=[ "res://.import/mixkit-arcade-fast-game-over-233.ogg-3cb69b020d5b6385be79bc576f34ff46.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

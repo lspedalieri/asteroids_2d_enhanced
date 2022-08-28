@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-positive-item-grab-3173.ogg-6fe8dc1a08a2dbd909c8f0aa8dcd38c6.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-positive-item-grab-3173.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-positive-item-grab-3173.ogg-6fe8dc1a08a2dbd909c8f0aa8dcd38c6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

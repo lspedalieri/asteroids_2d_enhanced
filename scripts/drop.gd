@@ -70,3 +70,4 @@ func _on_Lifetime_timeout():
 	print("drop lifetime timeout")
 	emit_signal("explode", get_global_position())
 	queue_free()
+

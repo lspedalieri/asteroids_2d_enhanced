@@ -96,6 +96,7 @@ func setShield(delta):
 			get_node("shield").hide()
 		if not shield_up:
 			emit_signal("shield_down")
+			$shielddown.play()
 			$shield_timer.wait_time = shield_repair_time
 			$shield_timer.start()
 
@@ -153,13 +154,16 @@ func disable():
 
 func damage(amount):
 	if shield_up:
+		$shieldhit.play()
 		shield_level -= amount
 	else:
+		$explosion.play()
 		print ("hits and shoots")
 		print(Global.hits)
 		print(Global.player_shoot_counter)
-
-		var accuracy:float = (float(Global.hits)/float(Global.player_shoot_counter))*100
+		var accuracy:float = 0.0
+		if Global.player_shoot_counter > 0:
+			accuracy = (float(Global.hits)/float(Global.player_shoot_counter))*100
 		print(accuracy)
 		disable()
 		emit_signal("explode", accuracy)
@@ -185,15 +189,21 @@ func collectPowerup(body):
 	#print("collected ",body.type)
 	Global.powerup_counter[body.type] += 1
 	emit_signal("pickup", body)
+	pickup()
 	checkUpgrades(body.type)
 	
-	
+func pickup():
+	$pickup.play()
+
 func checkUpgrades(type):
 	#print("check upgrade ", type)
+	if Global.powerups_blocked == true:
+		return
 	match type:
 		"gold":
 			#print("found upgrade gold")
 			var new_fire_rate:int = Global.powerup_counter.gold/5
+			Global.score += Global.powerup_points.gold
 			if new_fire_rate < 5 and fire_rate != Global.fire_rate[new_fire_rate]:
 				#print("upgrade fire rate")
 				emit_signal("upgrade", "fire rate")
@@ -204,6 +214,7 @@ func checkUpgrades(type):
 		"silver":
 			#print("found upgrade silver")
 			var new_thrust:int = Global.powerup_counter.silver/5
+			Global.score += Global.powerup_points.silver
 			if new_thrust < 5 and thrust != Global.thrust[new_thrust]:
 				#print("upgrade thruster")
 				emit_signal("upgrade", "thrusters")
@@ -213,6 +224,7 @@ func checkUpgrades(type):
 		"bronze":
 			#print("found upgrade bronze")
 			var new_rot_speed:int = Global.powerup_counter.bronze/5
+			Global.score += Global.powerup_points.bronze
 			if new_rot_speed < 5 and rot_speed != Global.rot[new_rot_speed]:
 				emit_signal("upgrade", "rotation")
 				rot_speed = Global.rot[new_rot_speed]
@@ -222,9 +234,11 @@ func checkUpgrades(type):
 
 func levelUp():
 	var l = levelup.instance()
+	$levelup.play()
 	add_child(l)
 
 
 func _on_shield_timer_timeout():
+	$shieldup.play()
 	shield_up = true
 	shield_level = 1

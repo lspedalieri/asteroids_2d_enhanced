@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-healing-machine-hum-1449.ogg-738ad00e60c61a5c92dc125f391c15ab.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-healing-machine-hum-1449.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-healing-machine-hum-1449.ogg-738ad00e60c61a5c92dc125f391c15ab.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

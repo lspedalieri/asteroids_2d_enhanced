@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-construction-complete-811.ogg-c5d24c9da7d5da2bd65e89bc26e18ca6.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-construction-complete-811.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-construction-complete-811.ogg-c5d24c9da7d5da2bd65e89bc26e18ca6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

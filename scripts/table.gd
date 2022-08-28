@@ -23,6 +23,7 @@ func set_data(data:Dictionary):
 	get_node("VBoxContainer/PanelContainer2/ScrollContainer/VBoxContainer/"+instance.name+"/5").text = str(data.accuracy)+"%"
 
 func _ready():
+	$music.play()
 	for i in range(data.size()):
 		set_data(data[i])
 

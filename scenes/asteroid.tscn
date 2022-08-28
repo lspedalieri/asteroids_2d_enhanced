@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/asteroid.gd" type="Script" id=1]
 [ext_resource path="res://art/asteroids/meteorGrey_big1_n.png" type="Texture" id=2]
 [ext_resource path="res://art/asteroids/meteorGrey_big1.png" type="Texture" id=3]
+[ext_resource path="res://audio/scifi/lowFrequency_explosion_000.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Shaders/normal_map.gdshader" type="Shader" id=5]
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -68,3 +69,19 @@ uppercase = true
 
 [node name="fracking" type="AnimationPlayer" parent="."]
 anims/fracking = SubResource( 1 )
+
+[node name="sounds" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="fracking_tiny" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 4 )
+
+[node name="fracking_small" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 4 )
+
+[node name="fracking_medium" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 4 )
+
+[node name="fracking_big" type="AudioStreamPlayer2D" parent="sounds"]
+stream = ExtResource( 4 )

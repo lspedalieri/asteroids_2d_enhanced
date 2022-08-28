@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-fast-sci-fi-bleep-903.ogg-1b285c5b31fa2e5f9665ee16905c239e.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-fast-sci-fi-bleep-903.ogg"
+dest_files=[ "res://.import/mixkit-fast-sci-fi-bleep-903.ogg-1b285c5b31fa2e5f9665ee16905c239e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

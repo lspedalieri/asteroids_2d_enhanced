@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-drone-hover-915.ogg-18c5a88c7a47396f490574b5cba84e6b.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-drone-hover-915.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-drone-hover-915.ogg-18c5a88c7a47396f490574b5cba84e6b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-laser-gun-impact-destruction-782.ogg-576a6a0314996921626c74bd400d26ef.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-laser-gun-impact-destruction-782.ogg"
+dest_files=[ "res://.import/mixkit-laser-gun-impact-destruction-782.ogg-576a6a0314996921626c74bd400d26ef.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

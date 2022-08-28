@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mixkit-sci-fi-confirmation-914.ogg-7f9470b2d355ddde2101e37f61576a9a.oggstr"
+
+[deps]
+
+source_file="res://audio/mixkit-sci-fi-confirmation-914.ogg"
+dest_files=[ "res://.import/mixkit-sci-fi-confirmation-914.ogg-7f9470b2d355ddde2101e37f61576a9a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
