@@ -14,6 +14,7 @@ onready var message_label = $message
 onready var bronze_gauge = $powerups/bronze
 onready var silver_gauge = $powerups/silver
 onready var gold_gauge = $powerups/gold
+onready var enter_name_screen = $enter_name_screen
 
 func _ready():
 	ms = Global.chrono
@@ -123,9 +124,16 @@ func _on_shield_repair_timer_timeout():
 	shield_bar.value = 1
 	shield_repair.hide()
 
+func _on_enter_name_button_pressed():
+	Global.leaderboard_score.name = $enter_name_screen/enter_name.text
+	Global.leaderboard_data.append(Global.leaderboard_score)
+	SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
+	#get_tree().change_scene("res://scenes/leaderboard_table.tscn")
+#	Global.paused = not Global.paused
+#	get_tree().set_pause(Global.paused)
 
 func _on_Quit_pressed():
-	get_tree().change_scene("res://scenes/leaderboard_table.tscn")
+	SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
 	Global.paused = not Global.paused
 	get_tree().set_pause(Global.paused)
 	#get_tree().root.queue_free()

@@ -31,6 +31,8 @@ onready var restart_timer = get_node("Timers/restart_timer")
 ##################################################
 
 func _ready():
+	print("main ready")
+	#HUD.enter_name_screen.hide()
 	set_process(true)
 	get_node("music/backmusic1").play()
 	player.connect("explode", self, "explode_player")
@@ -135,8 +137,9 @@ func explode_player(accuracy):
 #	expl.play_explosion_sounds()
 
 	HUD.show_message(Global.messages['game_over'])
-	var leaderboard_score = {'score' : HUD.get_node("score").text, 'name':'Orloph', 'time': HUD.time_last, 'date':Time.get_unix_time_from_system(), 'accuracy': accuracy}
-	Global.leaderboard_data.append(leaderboard_score)
+	Global.leaderboard_score = {'score' : HUD.get_node("score").text, 'name':Global.username, 'time': HUD.time_last, 'date':Time.get_unix_time_from_system(), 'accuracy': accuracy}
+	#Global.leaderboard_data.append(leaderboard_score)
+	print("ship exploded")
 	restart_timer.start()
 	
 
@@ -161,7 +164,8 @@ func explode_drop(pos):
 #########################
 
 func _on_restart_timer_timeout():
-	Global.new_game()
+	HUD.enter_name_screen.show()
+	#Global.new_game()
 
 func _on_enemy_timer_timeout():
 	spawn_enemy()

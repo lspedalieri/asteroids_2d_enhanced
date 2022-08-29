@@ -159,6 +159,7 @@ func disable():
 	call_deferred("set_enable_monitoring", false)
 
 #gestisce l'evento body entered per i vari oggetti e gruppi, gli eventuali danni
+#alcuni oggetti possono essere inviati al metodo anzichè provenire da un segnale per esempio i proiettili nemici che sono anch'essi delle aree2d
 func _on_player_body_entered(body):
 	print("object entered in player area")
 	if !is_visible():

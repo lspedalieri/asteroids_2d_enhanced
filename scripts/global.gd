@@ -11,6 +11,8 @@ extends Node
 
 var start_scene = "res://scenes/leaderboard_table.tscn"
 var game_over = false
+var username := ""
+var leaderboard_score = {}
 var score = 0
 var chrono = 0
 var level = 0
@@ -173,7 +175,7 @@ var asteroid_properties = {
 }
 
 #enemy settings
-var enemy_timer = 3
+var enemy_timer = 60
 var enemy_drop_chance = 0.95
 var enemy_bullet_damage = 25
 var enemy_health = 30
@@ -215,3 +217,4 @@ func new_game():
 	level = 0
 	#goto_scene("res://scenes/leaderboard_table.tscn")
 	get_tree().change_scene(start_scene)
+	#SceneTransition.change_scene(start_scene)

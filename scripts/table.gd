@@ -28,7 +28,11 @@ func _ready():
 		set_data(data[i])
 
 func _on_Start_pressed():
-	get_tree().change_scene("res://scenes/main.tscn")
+	print("start")
+	#var a = SceneTransition.instance()
+	SceneTransition.change_scene("res://scenes/main.tscn")
+	#get_tree().change_scene("res://scenes/main.tscn")
 	
 func _on_Quit_pressed():
+	print("quit")
 	get_tree().root.queue_free()

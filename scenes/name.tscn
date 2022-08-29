@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Shaders/electro_shader.gdshader" type="Shader" id=1]
+[ext_resource path="res://addons/uipack-space/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/name.gd" type="Script" id=3]
+[ext_resource path="res://addons/SpaceShooterRedux/Bonus/kenvector_future_thin.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/line_color = Color( 0, 1, 1, 1 )
+shader_param/line_freq = 9.56
+shader_param/height = 0.6
+shader_param/speed = 0.8
+shader_param/scale = Vector2( 2, 16 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[node name="name" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 442.0
+margin_top = 139.0
+margin_right = 2362.0
+margin_bottom = 1219.0
+
+[node name="enter_name" type="LineEdit" parent="ColorRect"]
+margin_left = 581.0
+margin_top = 464.0
+margin_right = 1429.0
+margin_bottom = 582.0
+
+[node name="Button" type="Button" parent="ColorRect"]
+margin_left = 896.0
+margin_top = 632.0
+margin_right = 1034.0
+margin_bottom = 734.0
+custom_fonts/font = SubResource( 3 )
+text = "OK"
+
+[node name="Label" type="Label" parent="ColorRect/Button"]
+margin_left = -93.0
+margin_top = -298.0
+margin_right = 228.0
+margin_bottom = -214.0
+custom_fonts/font = SubResource( 2 )
+text = "Enter name"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_Button_pressed"]
