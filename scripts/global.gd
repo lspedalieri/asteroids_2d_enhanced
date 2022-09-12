@@ -9,7 +9,8 @@ extends Node
 
 #global game settings
 
-var start_scene = "res://scenes/leaderboard_table.tscn"
+var leaderboard_scene = "res://scenes/leaderboard_table.tscn"
+var game_scene = "res://scenes/main.tscn"
 var game_over = false
 var username := ""
 var leaderboard_score = {}
@@ -94,6 +95,12 @@ var rot = {0:1, 1:1.5, 2:2.5, 3:3.5, 4:4.5}
 var shield_regen = {0:2.5, 1:5, 2:7.5, 3:10, 4:15}
 var shield_repair = {0:20, 1:15, 2:10, 3:5, 4:3}
 #var shield_max = {0:100, 1:150, 2:200, 3:300, 4:400}
+var powerup_counter_template := {
+	"gold":0, 	#fire rate upgrade
+	"silver":0, #thruster upgrade
+	"bronze":0 	#rotation upgrade
+}
+
 var powerup_counter := {
 	"gold":0, 	#fire rate upgrade
 	"silver":0, #thruster upgrade
@@ -211,10 +218,22 @@ var powerup_points = {"bronze":50, "silver":100, "gold":200}
 var powerup_lifetime = 15
 
 #Opening in start screen
-func new_game():
+func leaderboard():
+	print("leaderboard")
 	game_over = false
+	resetScores()
+	goto_scene(leaderboard_scene)
+	#SceneTransition.change_scene(leaderboard_scene)
+
+func new_game():
+	print("new game")
+	resetScores()
+	goto_scene(game_scene)
+	#SceneTransition.change_scene(game_scene)
+
+func resetScores():
 	score = 0
 	level = 0
-	#goto_scene("res://scenes/leaderboard_table.tscn")
-	get_tree().change_scene(start_scene)
-	#SceneTransition.change_scene(start_scene)
+	powerup_counter = {}
+	powerup_counter = powerup_counter_template.duplicate()
+	print(powerup_counter)

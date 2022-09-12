@@ -18,9 +18,9 @@ onready var enter_name_screen = $enter_name_screen
 
 func _ready():
 	ms = Global.chrono
-	gold_gauge.value = Global.powerup_counter.gold
-	silver_gauge.value = Global.powerup_counter.silver
-	bronze_gauge.value = Global.powerup_counter.bronze
+	gold_gauge.value = 0 #Global.powerup_counter.gold
+	silver_gauge.value = 0 #Global.powerup_counter.silver
+	bronze_gauge.value = 0 #Global.powerup_counter.bronze
 	pass # Replace with function body.
 	#set_process(true)
 	shield_repair.max_value = Global.shield_repair[Global.upgrade_level['shield_regen']]
@@ -127,13 +127,15 @@ func _on_shield_repair_timer_timeout():
 func _on_enter_name_button_pressed():
 	Global.leaderboard_score.name = $enter_name_screen/enter_name.text
 	Global.leaderboard_data.append(Global.leaderboard_score)
-	SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
+	Global.leaderboard()
+	#SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
 	#get_tree().change_scene("res://scenes/leaderboard_table.tscn")
 #	Global.paused = not Global.paused
 #	get_tree().set_pause(Global.paused)
 
 func _on_Quit_pressed():
-	SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
+	Global.leaderboard()
+	#SceneTransition.change_scene("res://scenes/leaderboard_table.tscn")
 	Global.paused = not Global.paused
 	get_tree().set_pause(Global.paused)
 	#get_tree().root.queue_free()

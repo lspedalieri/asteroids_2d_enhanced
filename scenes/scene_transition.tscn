@@ -11,7 +11,7 @@ shader_param/bg_color = null
 resource_name = "RESET"
 length = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Dissolve:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -26,7 +26,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "dissolve"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Dissolve:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,7 +42,7 @@ tracks/0/keys = {
 visible = false
 script = ExtResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Dissolve" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 1 )
 anchor_right = 1.0
@@ -53,6 +53,6 @@ autoplay = "dissolve"
 anims/RESET = SubResource( 2 )
 anims/dissolve = SubResource( 3 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Scroll" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laser7.ogg-f6193dead7bf77a52f4bc7ba8809b629.oggstr"
+
+[deps]
+
+source_file="res://audio/laser7.ogg"
+dest_files=[ "res://.import/laser7.ogg-f6193dead7bf77a52f4bc7ba8809b629.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

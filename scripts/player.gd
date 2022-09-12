@@ -62,6 +62,7 @@ var acc = Vector2()
 var shield_up = true
 
 func _ready():
+	Global.resetScores()
 	gun_timer.set_wait_time(fire_rate)
 	screen_size = get_viewport_rect().size
 	pos = screen_size / 2

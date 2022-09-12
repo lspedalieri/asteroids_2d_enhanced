@@ -30,7 +30,8 @@ func _ready():
 func _on_Start_pressed():
 	print("start")
 	#var a = SceneTransition.instance()
-	SceneTransition.change_scene("res://scenes/main.tscn")
+	#SceneTransition.change_scene("res://scenes/main.tscn")
+	Global.new_game()
 	#get_tree().change_scene("res://scenes/main.tscn")
 	
 func _on_Quit_pressed():
