@@ -15,12 +15,12 @@ func change_scene(target: String, type: String = 'dissolve') -> void:
 func transitionDissolve(target: String) -> void:
 	$AnimationPlayer.play('dissolve')
 	yield($AnimationPlayer, 'animation_finished')
-	get_tree().change_scene(target)
+	#get_tree().change_scene(target)
 	$AnimationPlayer.play_backwards('dissolve')
 
 
 func transitionCloud(target: String) -> void:
 	$AnimationPlayer.play('clouds_in')
 	yield($AnimationPlayer, 'animation_finished')
-	get_tree().change_scene(target)
+	#get_tree().change_scene(target)
 	$AnimationPlayer.play_backwards('clouds_out')

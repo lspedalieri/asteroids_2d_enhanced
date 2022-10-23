@@ -95,18 +95,23 @@ var rot = {0:1, 1:1.5, 2:2.5, 3:3.5, 4:4.5}
 var shield_regen = {0:2.5, 1:5, 2:7.5, 3:10, 4:15}
 var shield_repair = {0:20, 1:15, 2:10, 3:5, 4:3}
 #var shield_max = {0:100, 1:150, 2:200, 3:300, 4:400}
-var powerup_counter_template := {
+var powerup_counter_template = {
 	"gold":0, 	#fire rate upgrade
 	"silver":0, #thruster upgrade
 	"bronze":0 	#rotation upgrade
 }
 
-var powerup_counter := {
+var powerup_counter = {
 	"gold":0, 	#fire rate upgrade
 	"silver":0, #thruster upgrade
 	"bronze":0 	#rotation upgrade
 }
 
+var gouge_divider = {
+	'bronze':5,
+	'silver':5,
+	'gold':5,
+	} 
 
 #asteroid settings
 var spawn_locations_num = 8
@@ -190,6 +195,14 @@ var enemy_points = 100
 var boss_health = 200
 var boss_points = 1000
 
+#powerup settings
+var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
+						"silver":'res://art/powerups/star_silver.png',
+						"gold":'res://art/powerups/star_gold.png'}
+var powerup_points = {"bronze":50, "silver":100, "gold":200}
+
+var powerup_lifetime = 15
+
 #########################################################
 #
 #	Global Singleton Methods to start and restart game
@@ -208,20 +221,17 @@ func goto_scene(path):
 	print(current_scene)
 	current_scene.queue_free()
 	current_scene = new_scene
-	
-#powerup settings
-var powerup_textures = {"bronze":'res://art/powerups/star_bronze.png',
-						"silver":'res://art/powerups/star_silver.png',
-						"gold":'res://art/powerups/star_gold.png'}
-var powerup_points = {"bronze":50, "silver":100, "gold":200}
-
-var powerup_lifetime = 15
 
 #Opening in start screen
 func leaderboard():
 	print("leaderboard")
+	print(powerup_counter)
+	print(powerup_counter_template)
 	game_over = false
 	resetScores()
+	print("resetted scores")
+	print(powerup_counter)
+	print(powerup_counter_template)
 	goto_scene(leaderboard_scene)
 	#SceneTransition.change_scene(leaderboard_scene)
 
@@ -234,6 +244,10 @@ func new_game():
 func resetScores():
 	score = 0
 	level = 0
-	powerup_counter = {}
-	powerup_counter = powerup_counter_template.duplicate()
-	print(powerup_counter)
+	powerup_counter = {
+		"gold":0, 	#fire rate upgrade
+		"silver":0, #thruster upgrade
+		"bronze":0 	#rotation upgrade
+	}
+
+	#powerup_counter = powerup_counter_template

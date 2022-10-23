@@ -218,8 +218,10 @@ func checkUpgrades(type):
 		return
 	match type:
 		"gold":
-			#print("found upgrade gold")
-			var new_fire_rate:int = Global.powerup_counter.gold/5
+			print("found upgrade gold")
+			print(Global.powerup_counter.gold)
+			var new_fire_rate:int = Global.powerup_counter.gold/Global.gouge_divider.gold
+			
 			Global.score += Global.powerup_points.gold
 			if new_fire_rate < 5 and fire_rate != Global.fire_rate[new_fire_rate]:
 				#print("upgrade fire rate")
@@ -229,8 +231,10 @@ func checkUpgrades(type):
 				levelUp()
 			pass
 		"silver":
-			#print("found upgrade silver")
-			var new_thrust:int = Global.powerup_counter.silver/5
+			print("found upgrade silver")
+			print(Global.powerup_counter.silver)
+			var new_thrust:int = Global.powerup_counter.silver/Global.gouge_divider.silver
+
 			Global.score += Global.powerup_points.silver
 			if new_thrust < 5 and thrust != Global.thrust[new_thrust]:
 				#print("upgrade thruster")
@@ -239,8 +243,11 @@ func checkUpgrades(type):
 				levelUp()
 			pass
 		"bronze":
-			#print("found upgrade bronze")
-			var new_rot_speed:int = Global.powerup_counter.bronze/5
+			print("found upgrade bronze")
+			print(Global.powerup_counter.bronze)			
+			var new_rot_speed:int = Global.powerup_counter.bronze/Global.gouge_divider.bronze
+
+
 			Global.score += Global.powerup_points.bronze
 			if new_rot_speed < 5 and rot_speed != Global.rot[new_rot_speed]:
 				emit_signal("upgrade", "rotation")

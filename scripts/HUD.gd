@@ -101,7 +101,7 @@ func updatePowerups():
 			label = $powerups/bronze/label
 		node.set_tint_progress(color)
 		node.set_progress_texture(texture_bar)
-		node.set_value(Global.powerup_counter[node.name] % 5)
+		node.set_value(Global.powerup_counter[node.name] % Global.gouge_divider[node.name])
 		label.set_text(String(Global.powerup_counter[node.name]))
 
 func show_message(text):
