@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/level_up.gd" type="Script" id=1]
-[ext_resource path="res://art/effects/alpha/spotlight_7.png" type="Texture" id=2]
+[ext_resource path="res://art/stars/spotlight_7.png" type="Texture" id=2]
 [ext_resource path="res://art/effects/alpha/effect_4.png" type="Texture" id=3]
-[ext_resource path="res://art/effects/alpha/spotlight_1.png" type="Texture" id=4]
+[ext_resource path="res://art/stars/spotlight_1.png" type="Texture" id=4]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
