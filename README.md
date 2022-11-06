@@ -1,8 +1,6 @@
-#Asteroids Enhanced 0.1
+# Asteroids Enhanced 0.1
 
-Just a set of enhancements for the old glory "Asteroids"
-
-##0.1
+**Just a set of enhancements for the old glory "Asteroids"**
 
 ### Features
 
