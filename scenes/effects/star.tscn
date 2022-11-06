@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/effects/star.gd" type="Script" id=1]
+[ext_resource path="res://art/stars/spotlight_1.png" type="Texture" id=2]
+[ext_resource path="res://art/stars/spotlight_8.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[node name="Star" type="Particles2D"]
+modulate = Color( 4, 1, 0.3, 1 )
+material = SubResource( 2 )
+position = Vector2( 844, 466 )
+emitting = false
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
