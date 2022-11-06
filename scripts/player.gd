@@ -166,7 +166,7 @@ func _on_player_body_entered(body):
 	if !is_visible():
 		print("is not visible")
 		return
-	if body.get_groups().has("asteroids"):
+	if body.is_in_group("asteroids"):
 		if shield_up:
 			body.explode(vel)
 			$sounds/shield/shieldhit.play()
@@ -181,11 +181,9 @@ func _on_player_body_entered(body):
 		else:
 			#emit_signal("explode")
 			explode()
-	if body.get_groups().has("powerups"):
-		if !is_visible():
-			return
-		if body.is_in_group("powerups"):
-			collectPowerup(body)
+	if body.is_in_group("powerups"):
+		print("powerup")
+		collectPowerup(body)
 
 func explode():
 	$sounds/explosion.play()

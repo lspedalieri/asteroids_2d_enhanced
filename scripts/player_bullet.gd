@@ -8,7 +8,7 @@ func _on_lifetime_timeout():
 	queue_free()
 
 func _on_player_bullet_body_entered(body):
-	if body.get_groups().has("asteroids"):
+	if body.is_in_group("asteroids"):
 		Global.hits += 1
 		#delete the bullet
 		queue_free()
