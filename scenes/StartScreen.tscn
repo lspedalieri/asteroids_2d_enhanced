@@ -4,7 +4,8 @@
 [ext_resource path="res://art/backgrounds/backround.png" type="Texture" id=2]
 [ext_resource path="res://art/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://art/LABELS/ASTEROIDS-ON-STEROIDS-2-8-2023.png" type="Texture" id=4]
-[ext_resource path="res://scripts/tween_letters_move.gd" type="Script" id=5]
+
+[sub_resource type="Theme" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -38,7 +39,6 @@ stretch_mode = 1
 [node name="Title" type="Sprite" parent="."]
 position = Vector2( 960, -61 )
 texture = ExtResource( 4 )
-script = ExtResource( 5 )
 
 [node name="Cursor" type="AnimatedSprite" parent="."]
 
@@ -47,6 +47,7 @@ margin_left = 912.0
 margin_top = 768.0
 margin_right = 1112.0
 margin_bottom = 842.0
+theme = SubResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "START"
 
