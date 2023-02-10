@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ASTEROIDS-ON-STEROIDS-2-8-2023.png-99c89296e838280cb21cd44627e96115.stex"
+path="res://.import/C.png-fa4e39040fb30a05ad2ed514f8412fa4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/LABELS/ASTEROIDS-ON-STEROIDS-2-8-2023.png"
-dest_files=[ "res://.import/ASTEROIDS-ON-STEROIDS-2-8-2023.png-99c89296e838280cb21cd44627e96115.stex" ]
+source_file="res://art/labels/letters/terminator/C.png"
+dest_files=[ "res://.import/C.png-fa4e39040fb30a05ad2ed514f8412fa4.stex" ]
 
 [params]
 

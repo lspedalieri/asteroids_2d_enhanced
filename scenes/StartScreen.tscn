@@ -1,19 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://art/backgrounds/backround.png" type="Texture" id=2]
 [ext_resource path="res://art/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://art/LABELS/ASTEROIDS-ON-STEROIDS-2-8-2023.png" type="Texture" id=4]
-
-[sub_resource type="Theme" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 60
-font_data = ExtResource( 3 )
+[ext_resource path="res://art/labels/ASTEROIDS-ON-STEROIDS-2-8-2023.png" type="Texture" id=4]
+[ext_resource path="res://art/labels/letters/terminator/E.png" type="Texture" id=5]
+[ext_resource path="res://art/labels/letters/terminator/S.png" type="Texture" id=6]
+[ext_resource path="res://art/labels/letters/terminator/T.png" type="Texture" id=7]
+[ext_resource path="res://art/labels/letters/terminator/A.png" type="Texture" id=8]
+[ext_resource path="res://art/labels/letters/terminator/I.png" type="Texture" id=9]
+[ext_resource path="res://art/labels/letters/terminator/R.png" type="Texture" id=10]
+[ext_resource path="res://art/labels/letters/terminator/D.png" type="Texture" id=11]
+[ext_resource path="res://art/labels/letters/terminator/N.png" type="Texture" id=12]
+[ext_resource path="res://art/labels/letters/terminator/O.png" type="Texture" id=13]
 
 [sub_resource type="Animation" id=2]
 resource_name = "start title"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Title:scale")
 tracks/0/interp = 1
@@ -21,11 +24,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 0.57435 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 3.5, 3.5 ) ]
+"values": [ Vector2( 0.001, 0.001 ), Vector2( 3.5, 3.5 ) ]
 }
+
+[sub_resource type="Theme" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 3 )
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,12 +46,58 @@ texture = ExtResource( 2 )
 stretch_mode = 1
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 960, -61 )
+position = Vector2( 960, 30 )
+scale = Vector2( 0.001, 0.001 )
 texture = ExtResource( 4 )
 
 [node name="Cursor" type="AnimatedSprite" parent="."]
 
-[node name="start" type="Label" parent="."]
+[node name="TitleStartingAnimation" type="AnimationPlayer" parent="."]
+"anims/start title" = SubResource( 2 )
+
+[node name="Letters" type="Node" parent="."]
+
+[node name="A" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 8 )
+
+[node name="S" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 6 )
+
+[node name="T" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 7 )
+
+[node name="E" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 5 )
+
+[node name="R" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 10 )
+
+[node name="O" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 13 )
+
+[node name="I" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 9 )
+
+[node name="D" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 11 )
+
+[node name="N" type="Sprite" parent="Letters"]
+position = Vector2( 168, -273.5 )
+texture = ExtResource( 12 )
+
+[node name="TitleLetters" type="Node2D" parent="."]
+
+[node name="Menu" type="Node" parent="."]
+
+[node name="start" type="Label" parent="Menu"]
 margin_left = 912.0
 margin_top = 768.0
 margin_right = 1112.0
@@ -51,13 +106,10 @@ theme = SubResource( 3 )
 custom_fonts/font = SubResource( 1 )
 text = "START"
 
-[node name="quit" type="Label" parent="."]
+[node name="quit" type="Label" parent="Menu"]
 margin_left = 936.0
 margin_top = 874.0
 margin_right = 1085.0
 margin_bottom = 948.0
 custom_fonts/font = SubResource( 1 )
 text = "QUIT"
-
-[node name="TitleStartingAnimation" type="AnimationPlayer" parent="."]
-"anims/start title" = SubResource( 2 )
