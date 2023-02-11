@@ -1,9 +1,12 @@
-extends Node2D
+extends Control
 
 var selection := "play"
 onready var title_animation = get_node("TitleStartingAnimation")
+onready var start = get_node("Menu/Start")
+onready var quit = get_node("Menu/Quit")
 var letters = preload("res://scenes/letters.tscn")
 onready var title = get_node("Title")
+
 var title_starting_coordinates = [
 	{"letter" : "A", "coords" : Vector2(20, -20)},
 	{"letter" : "S", "coords" : Vector2(40, -20)},
@@ -49,24 +52,19 @@ var title_landing_coordinates = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Cursor.position.y = 193
 	selection = "play"
 	title_animation.play("start title")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_up"):
-		$Cursor.position.y = 193
-		selection = "play"
-		
-	elif Input.is_action_just_pressed("ui_down"):
-		$Cursor.position.y = 213
-		selection = "credits"
-		
-
-	if Input.is_action_just_pressed("shoot"):
-		if selection == "play":
-			get_tree().change_scene("res://Screens/ScreenShipSelection.tscn")
-		else:
-			get_tree().change_scene("res://Screens/credits.tscn")
+func _on_Start_pressed():
+	print("start")
+	#var a = SceneTransition.instance()
+	#SceneTransition.change_scene("res://scenes/main.tscn")
+	Global.new_game()
+	#get_tree().change_scene("res://scenes/main.tscn")
+	
+func _on_Quit_pressed():
+	print("quit")
+	get_tree().root.queue_free()
+	
+func _on_Leaderboard_pressed():
+	get_tree().change_scene("res://scenes/leaderboard_table.tscn")
