@@ -150,6 +150,8 @@ position = Vector2( 65, 579 )
 
 [node name="explosion_container" type="Node2D" parent="."]
 
+[node name="letter_container" type="Node" parent="."]
+
 [node name="music" type="Node" parent="."]
 
 [node name="backmusic1" type="AudioStreamPlayer2D" parent="music"]

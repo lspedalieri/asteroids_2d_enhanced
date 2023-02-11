@@ -1,18 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://art/backgrounds/backround.png" type="Texture" id=2]
 [ext_resource path="res://art/fonts/PixeloidSans-JR6qo.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://art/labels/ASTEROIDS-ON-STEROIDS-2-8-2023.png" type="Texture" id=4]
-[ext_resource path="res://art/labels/letters/terminator/E.png" type="Texture" id=5]
-[ext_resource path="res://art/labels/letters/terminator/S.png" type="Texture" id=6]
-[ext_resource path="res://art/labels/letters/terminator/T.png" type="Texture" id=7]
-[ext_resource path="res://art/labels/letters/terminator/A.png" type="Texture" id=8]
-[ext_resource path="res://art/labels/letters/terminator/I.png" type="Texture" id=9]
-[ext_resource path="res://art/labels/letters/terminator/R.png" type="Texture" id=10]
-[ext_resource path="res://art/labels/letters/terminator/D.png" type="Texture" id=11]
-[ext_resource path="res://art/labels/letters/terminator/N.png" type="Texture" id=12]
-[ext_resource path="res://art/labels/letters/terminator/O.png" type="Texture" id=13]
+[ext_resource path="res://scenes/letters.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=2]
 resource_name = "start title"
@@ -55,43 +47,7 @@ texture = ExtResource( 4 )
 [node name="TitleStartingAnimation" type="AnimationPlayer" parent="."]
 "anims/start title" = SubResource( 2 )
 
-[node name="Letters" type="Node" parent="."]
-
-[node name="A" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 8 )
-
-[node name="S" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 6 )
-
-[node name="T" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 7 )
-
-[node name="E" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 5 )
-
-[node name="R" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 10 )
-
-[node name="O" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 13 )
-
-[node name="I" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 9 )
-
-[node name="D" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 11 )
-
-[node name="N" type="Sprite" parent="Letters"]
-position = Vector2( 168, -273.5 )
-texture = ExtResource( 12 )
+[node name="Letters" parent="." instance=ExtResource( 5 )]
 
 [node name="TitleLetters" type="Node2D" parent="."]
 

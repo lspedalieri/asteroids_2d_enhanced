@@ -17,6 +17,7 @@ var player_explosion = preload("res://scenes/effects/player_explosion.tscn")
 var asteroid_explosion = preload("res://scenes/effects/asteroid_explosion.tscn")
 var drop_explosion = preload("res://scenes/effects/drop_explosion.tscn")
 var enemy_explosion = preload("res://scenes/effects/enemy_explosion.tscn")
+var letter_scene = preload("res://scenes/letters.tscn")
 
 #Load Global variables
 onready var asteroid_template = Global.asteroid_template
@@ -27,6 +28,7 @@ onready var expl_sounds = get_node("expl_sounds")
 onready var player = get_node("player")
 onready var enemy_timer = get_node("Timers/enemy_timer")
 onready var restart_timer = get_node("Timers/restart_timer")
+onready var letter_container = get_node("letter_container")
 
 ##################################################
 
@@ -96,6 +98,10 @@ func spawn_enemy():
 	enemy_timer.set_wait_time(rand_range(20, 40))
 	enemy_timer.start()
 
+func spawn_letter(symbol, pos):
+	var letter = letter_scene.instance()
+	letter_container.add_child(letter)
+	letter.init(symbol, pos)
 
 #########################
 #
