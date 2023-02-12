@@ -8,16 +8,20 @@ onready var title_container = get_node("TitleContainer")
 
 var letters = preload("res://scenes/letters.tscn")
 var title_letter
-var font = "terminator"
+var title_font = "terminator"
+var title_scaling = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.preloadLetters("terminator")
+	Global.preloadLetters(title_font)
 	#title_animation.play("start title")
+	createTitle()
+
+func createTitle():
 	for character in Global.title_coordinates:
 		title_letter = letters.instance()
 		$TitleContainer.add_child(title_letter)
-		title_letter.init(character, font, 0.5)
+		title_letter.init(character, title_font, title_scaling)
 
 func _on_Start_pressed():
 	#SceneTransition.change_scene("res://scenes/main.tscn")

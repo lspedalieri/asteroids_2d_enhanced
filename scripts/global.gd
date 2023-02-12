@@ -126,54 +126,78 @@ var asteroid_explosion_sounds = ["res://audio/scifi/explosionCrunch_000.ogg",
 						"res://audio/scifi/explosionCrunch_003.ogg", 
 						"res://audio/scifi/explosionCrunch_004.ogg"]
 var asteroid_properties = {
-	'big' : {'textures': ['res://art/asteroids/meteorGrey_big1.png',
-						'res://art/asteroids/meteorGrey_big3.png',
-						'res://art/asteroids/meteorGrey_big4.png'],
-			'maps': ['res://art/asteroids/meteorGrey_big1_n.png',
-						'res://art/asteroids/meteorGrey_big3_n.png',
-						'res://art/asteroids/meteorGrey_big4_n.png'],
+	'big' : {'textures': [
+						'res://art/asteroids/asteroid-big-1.png',
+						'res://art/asteroids/asteroid-big-2.png',
+						'res://art/asteroids/asteroid-big-3.png'
+					],
+			'maps': [
+						'res://art/asteroids/asteroid-big-1_n.png',
+						'res://art/asteroids/asteroid-big-2_n.png',
+						'res://art/asteroids/asteroid-big-3_n.png'
+					],
 			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
 						"res://audio/scifi/explosionCrunch_001.ogg", 
 						"res://audio/scifi/explosionCrunch_002.ogg", 
 						"res://audio/scifi/explosionCrunch_003.ogg", 
-						"res://audio/scifi/explosionCrunch_004.ogg"],
+						"res://audio/scifi/explosionCrunch_004.ogg"
+					],
 			 'life': 40,
 			 'damage': 40,
 			 'points': 10,
 			 'drop_chance': 0.5
 			},
-	'med' : {'textures': ['res://art/asteroids/meteorGrey_med1.png',
-						'res://art/asteroids/meteorGrey_med2.png'],
-			'maps': ['res://art/asteroids/meteorGrey_med1_n.png',
-						'res://art/asteroids/meteorGrey_med2_n.png'],
+	'med' : {'textures': [
+						'res://art/asteroids/asteroid-med-1.png',
+						'res://art/asteroids/asteroid-med-2.png',
+						'res://art/asteroids/asteroid-med-3.png'
+					],
+			'maps': [
+						'res://art/asteroids/asteroid-med-1_n.png',
+						'res://art/asteroids/asteroid-med-2_n.png',
+						'res://art/asteroids/asteroid-med-3_n.png'
+					],
 			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
 						"res://audio/scifi/explosionCrunch_001.ogg", 
 						"res://audio/scifi/explosionCrunch_002.ogg", 
 						"res://audio/scifi/explosionCrunch_003.ogg", 
-						"res://audio/scifi/explosionCrunch_004.ogg"],
+						"res://audio/scifi/explosionCrunch_004.ogg"
+					],
 			 'life': 30,
 			 'damage': 25,
 			 'points': 15,
 			 'drop_chance': 0.6
 			},
-	'sm' : {'textures': ['res://art/asteroids/meteorGrey_small1.png',
-					   'res://art/asteroids/meteorGrey_small2.png'],
-			'maps': ['res://art/asteroids/meteorGrey_small1_n.png',
-					   'res://art/asteroids/meteorGrey_small2_n.png'],
+	'sm' : {'textures': [
+					   'res://art/asteroids/asteroid-small-1.png',
+					   'res://art/asteroids/asteroid-small-2.png',
+					   'res://art/asteroids/asteroid-small-3.png'
+					],
+			'maps': [
+					   'res://art/asteroids/asteroid-small-1_n.png',
+					   'res://art/asteroids/asteroid-small-2_n.png',
+					   'res://art/asteroids/asteroid-small-3_n.png'
+					],
 			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
 						"res://audio/scifi/explosionCrunch_001.ogg", 
 						"res://audio/scifi/explosionCrunch_002.ogg", 
 						"res://audio/scifi/explosionCrunch_003.ogg", 
-						"res://audio/scifi/explosionCrunch_004.ogg"],
+						"res://audio/scifi/explosionCrunch_004.ogg"
+					],
 			 'life': 20,
 			 'damage': 15,
 			 'points': 20,
 			 'drop_chance': 0.8
 			},
-	'tiny' : {'textures': ['res://art/asteroids/meteorGrey_tiny1.png',
-						 'res://art/asteroids/meteorGrey_tiny2.png'],
-			'maps': ['res://art/asteroids/meteorGrey_tiny1_n.png',
-						 'res://art/asteroids/meteorGrey_tiny2_n.png'],
+	'tiny' : {'textures': [
+					   'res://art/asteroids/asteroid-tiny-1.png',
+					   'res://art/asteroids/asteroid-tiny-2.png',
+					   'res://art/asteroids/asteroid-tiny-3.png'],
+			'maps': [
+					   'res://art/asteroids/asteroid-tiny-1_n.png',
+					   'res://art/asteroids/asteroid-tiny-2_n.png',
+					   'res://art/asteroids/asteroid-tiny-3_n.png'
+					],
 			'sounds':["res://audio/scifi/explosionCrunch_000.ogg", 
 						"res://audio/scifi/explosionCrunch_001.ogg", 
 						"res://audio/scifi/explosionCrunch_002.ogg", 
