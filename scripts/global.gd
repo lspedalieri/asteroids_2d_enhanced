@@ -203,6 +203,32 @@ var powerup_points = {"bronze":50, "silver":100, "gold":200}
 
 var powerup_lifetime = 15
 
+#title letters
+var letters_path = "res://art/labels/letters/"
+var letters = []
+var title_coordinates = [
+	{"letter" : "A", "start_coords" : Vector2(120, 200), "end_coords" : Vector2(120, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "S", "start_coords" : Vector2(180, 200), "end_coords" : Vector2(180, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "T", "start_coords" : Vector2(240, 200), "end_coords" : Vector2(240, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "E", "start_coords" : Vector2(300, 200), "end_coords" : Vector2(300, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "R", "start_coords" : Vector2(360, 200), "end_coords" : Vector2(360, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "O", "start_coords" : Vector2(420, 200), "end_coords" : Vector2(420, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "I", "start_coords" : Vector2(460, 200), "end_coords" : Vector2(460, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "D", "start_coords" : Vector2(500, 200), "end_coords" : Vector2(500, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "S", "start_coords" : Vector2(560, 200), "end_coords" : Vector2(560, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "O", "start_coords" : Vector2(680, 200), "end_coords" : Vector2(680, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "N", "start_coords" : Vector2(740, 200), "end_coords" : Vector2(740, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "S", "start_coords" : Vector2(860, 200), "end_coords" : Vector2(860, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "T", "start_coords" : Vector2(920, 200), "end_coords" : Vector2(920, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "E", "start_coords" : Vector2(980, 200), "end_coords" : Vector2(980, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "R", "start_coords" : Vector2(1040, 200), "end_coords" : Vector2(1040, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "O", "start_coords" : Vector2(1100, 200), "end_coords" : Vector2(1100, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "I", "start_coords" : Vector2(1140, 200), "end_coords" : Vector2(1140, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "D", "start_coords" : Vector2(1180, 200), "end_coords" : Vector2(1180, 165), "method" : "TRANS_SINE", "time" : 3},
+	{"letter" : "S", "start_coords" : Vector2(1240, 200), "end_coords" : Vector2(1240, 165), "method" : "TRANS_SINE", "time" : 3},
+]
+
+
 #########################################################
 #
 #	Global Singleton Methods to start and restart game
@@ -251,3 +277,18 @@ func resetScores():
 	}
 
 	#powerup_counter = powerup_counter_template
+
+func preloadLetters(font):
+	var dir = Directory.new()
+	dir.open(letters_path + font + "/")
+	dir.list_dir_begin()
+	while true:
+		var file_name = dir.get_next()
+		if file_name == "":
+			#break the while loop when get_next() returns ""
+			break
+		elif !file_name.begins_with(".") and !file_name.ends_with(".import"):
+			letters.append(load(letters_path + "/" + file_name))
+	dir.list_dir_end()
+	print(letters)
+	

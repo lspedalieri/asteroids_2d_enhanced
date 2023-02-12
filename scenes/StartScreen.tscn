@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/StartScreen.gd" type="Script" id=1]
 [ext_resource path="res://art/backgrounds/backround.png" type="Texture" id=2]
 [ext_resource path="res://art/labels/ASTEROIDS-ON-STEROIDS-2-8-2023.png" type="Texture" id=4]
-[ext_resource path="res://scenes/letters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://addons/uipack-space/Fonts/kenvector_future_thin.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="Animation" id=2]
@@ -17,7 +16,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 0.00833761 ),
+"transitions": PoolRealArray( 1, 9.15 ),
 "update": 0,
 "values": [ Vector2( 0.001, 0.001 ), Vector2( 3.5, 3.5 ) ]
 }
@@ -29,7 +28,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 1, 0.00654158 ),
+"transitions": PoolRealArray( 1, 9.1505 ),
 "update": 0,
 "values": [ Vector2( 960, 30 ), Vector2( 960, 150 ) ]
 }
@@ -55,9 +54,7 @@ texture = ExtResource( 4 )
 [node name="TitleStartingAnimation" type="AnimationPlayer" parent="."]
 "anims/start title" = SubResource( 2 )
 
-[node name="Letters" parent="." instance=ExtResource( 5 )]
-
-[node name="TitleLetters" type="Node2D" parent="."]
+[node name="TitleContainer" type="Node2D" parent="."]
 
 [node name="Menu" type="Node" parent="."]
 

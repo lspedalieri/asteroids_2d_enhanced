@@ -98,10 +98,6 @@ func spawn_enemy():
 	enemy_timer.set_wait_time(rand_range(20, 40))
 	enemy_timer.start()
 
-func spawn_letter(symbol, pos):
-	var letter = letter_scene.instance()
-	letter_container.add_child(letter)
-	letter.init(symbol, pos)
 
 #########################
 #
