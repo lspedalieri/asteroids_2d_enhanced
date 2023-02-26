@@ -50,6 +50,7 @@ onready var clockwise_exhaust_front = get_node("thrusters/clockwise_exhaust_fron
 onready var main_exhaust = get_node("thrusters/main_exhaust")
 onready var back_exhaust1 = get_node("thrusters/back_exhaust1")
 onready var back_exhaust2 = get_node("thrusters/back_exhaust2")
+onready var star_nest_simple = get_tree().root.get_node("/root/main/Backgrounds/StarNestSimple")
 
 #--------
 
@@ -72,6 +73,8 @@ func _ready():
 #Main game loop
 #Calls the player main processes: movement, shoots, shield
 func _process(delta):
+	#print(star_nest_simple.material.get_shader_param("xspeed"))
+	#print(star_nest_simple.material.get_shader_param("yspeed"))
 	vel = vel.clamped(max_vel)
 	manageShield(delta)
 	setShoots()
@@ -82,6 +85,23 @@ func _process(delta):
 	setMovements()
 	set_position(pos)
 	set_rotation(rot - PI/2)
+	#setBackgroundMovements()
+
+func setBackgroundMovements():
+	#print(acc)
+	if acc.x != 0:
+		#star_nest_simple.material.set_shader_param("xspeed", -acc.x/1000)
+		star_nest_simple.material.set_shader_param("xspeed", -lerp(0, acc.x, 0.01)/1000)
+	elif acc.x == 0:
+		#star_nest_simple.material.set_shader_param("xspeed", 0.0)
+		star_nest_simple.material.set_shader_param("xspeed", -lerp(0, acc.x, 0.01)/1000)
+	if acc.y != 0:
+		#star_nest_simple.material.set_shader_param("yspeed", acc.y/1000)
+		star_nest_simple.material.set_shader_param("yspeed", lerp(0, acc.y, 0.01)/1000)
+	elif acc.y == 0:
+		#star_nest_simple.material.set_shader_param("yspeed", 0)
+		star_nest_simple.material.set_shader_param("yspeed", lerp(0, acc.y, 0.01)/1000)
+
 
 #Manage the cooldown of the player weapon. The fire is continue if the shoot button is pressed, 
 func setShoots():
@@ -112,7 +132,7 @@ func setInputs(delta):
 	elif Input.is_action_pressed("ui_left"):
 		rot -= rot_speed * delta
 		counterclockwise_exhaust_back.show()
-		counterclockwise_exhaust_front.show()		
+		counterclockwise_exhaust_front.show()
 	else:
 		counterclockwise_exhaust_back.hide()
 		counterclockwise_exhaust_front.hide()
@@ -132,6 +152,7 @@ func setInputs(delta):
 		main_exhaust.hide()
 		back_exhaust1.hide()
 		back_exhaust2.hide()
+
 
 #Manage movements outside the screen
 func setMovements():

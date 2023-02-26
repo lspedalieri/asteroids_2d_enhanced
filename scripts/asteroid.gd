@@ -14,6 +14,7 @@ signal explode
 
 onready var puff = get_node("puff")
 onready var life_label = get_node("life_label")
+onready var tail = get_node("tail")
 onready var asteroid_collider = get_node("asteroid_collider")
 export var bounce = 1.1
 
@@ -21,6 +22,7 @@ var life
 var size
 var vel = Vector2()
 var max_vel = 300
+var tail_angle
 var rot_speed
 var screen_size
 var extents
@@ -40,21 +42,23 @@ func init(init_size, init_pos, init_vel, init_life):
 	if init_vel.length() > 0:
 		vel = init_vel
 	else:
-		vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 2*PI))
+		vel = Vector2(rand_range(30, 100), 0) #.rotated(rand_range(0, 2*PI))
 	rot_speed = rand_range(-1.5, 1.5)
-	asteroid_collider.set_shape(getTexture())
+	var shape = getTexture()
+	asteroid_collider.set_shape(shape)
+	setTail(properties[size].size, vel)
 	set_position(init_pos)
 
 func getTexture():
 	var tex_index = randi() % properties[size].textures.size()
 	var texture = load(properties[size].textures[tex_index])
 	var map = load(properties[size].maps[tex_index])
-	get_node("sprite").set_texture(texture)
-	get_node("sprite").normal_map = map
 	extents = texture.get_size() / 2
 	var shape = CircleShape2D.new()
 	#give a proper size of the collision shape of the asteroids
 	shape.radius = min(texture.get_width(), texture.get_height())
+	get_node("sprite").set_texture(texture)
+	get_node("sprite").normal_map = map
 	return shape
 
 func setLabels(init_size, init_life):
@@ -64,11 +68,21 @@ func setLabels(init_size, init_life):
 	$life_label.set_text(String(init_life))
 
 
+func setTail(size, vel):
+	tail_angle = vel.angle() * 180/PI -180
+	tail.scale.x = size
+	#tail.scale.y = size
+	#print(size)
+	tail.rotation_degrees = tail_angle 
+	#print(tail.rotation_degrees)
+	pass
+
 func _process(delta):
 	$size_label.set_rotation(0)
 	$size_label.set_rotation(0)
 	vel = vel.clamped(Global.asteroid_max_vel)
 	set_rotation(get_rotation() + rot_speed * delta)
+	print(tail.get_rotation_degrees())
 	var collision = move_and_collide(vel * delta)
 #	if collision:
 #		print("asteroid collision")

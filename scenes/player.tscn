@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://addons/SpaceShooterRedux/PNG/playerShip2_orange.png" type="Texture" id=2]
+[ext_resource path="res://art/ships/ship-a1.png" type="Texture" id=2]
 [ext_resource path="res://audio/laser1.ogg" type="AudioStream" id=3]
 [ext_resource path="res://addons/SpaceShooterRedux/PNG/Effects/shield3.png" type="Texture" id=4]
 [ext_resource path="res://addons/SpaceShooterRedux/PNG/Effects/fire14.png" type="Texture" id=5]
@@ -88,7 +88,7 @@ script = ExtResource( 1 )
 
 [node name="ship" type="Sprite" parent="."]
 material = SubResource( 4 )
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -160,12 +160,12 @@ rotation = -0.00187606
 frames = SubResource( 2 )
 
 [node name="back_exhaust1" type="AnimatedSprite" parent="thrusters"]
-position = Vector2( 29, -42 )
+position = Vector2( 24, -37 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
 [node name="back_exhaust2" type="AnimatedSprite" parent="thrusters"]
-position = Vector2( -29, -42 )
+position = Vector2( -23, -38 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
@@ -176,13 +176,13 @@ scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
 [node name="counterclockwise_exhaust_back" type="AnimatedSprite" parent="thrusters"]
-position = Vector2( 12, -49 )
+position = Vector2( 19, -49 )
 rotation = 1.5707
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 
 [node name="clockwise_exhaust_back" type="AnimatedSprite" parent="thrusters"]
-position = Vector2( -12, -49 )
+position = Vector2( -19, -49 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )

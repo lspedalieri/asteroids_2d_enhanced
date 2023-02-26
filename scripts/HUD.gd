@@ -81,7 +81,7 @@ func update_shield(shield_level):
 func startShieldRepair():
 	shield_up = false
 	print("start shield repair")
-	print(shield_repair.max_value)
+	#print(shield_repair.max_value)
 	shield_bar.hide()
 	shield_repair.show()
 	$shield_repair.value = 0

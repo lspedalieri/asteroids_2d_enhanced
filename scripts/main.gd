@@ -19,6 +19,7 @@ var drop_explosion = preload("res://scenes/effects/drop_explosion.tscn")
 var enemy_explosion = preload("res://scenes/effects/enemy_explosion.tscn")
 var letter_scene = preload("res://scenes/letters.tscn")
 
+
 #Load Global variables
 onready var asteroid_template = Global.asteroid_template
 onready var spawns = get_node("spawn_locations")
@@ -65,10 +66,21 @@ func begin_next_level(start):
 #Returns Initialize asteroid properties (size, position, velocity, life)
 func init_asteroid_vars() -> Array:
 	var size = Global.asteroid_sizes[randi() % Global.asteroid_sizes.size() - 1]
-	var pos = spawns.get_child(randi() % (Global.spawn_locations_num -1)).get_position()
+	#var pos = spawns.get_child(randi() % (Global.spawn_locations_num -1)).get_position()
+	var pos = safeSpawnPos(size)
 	var vel = Vector2(rand_range(30, 100), 0).rotated(rand_range(0, 5*PI))
 	var life = Global.asteroid_properties[size].life
 	return [size, pos, vel, life]
+
+func safeSpawnPos(size):
+	randomize()
+	var x = rand_range(1, get_viewport().size.x)
+	var y = rand_range(1, get_viewport().size.y)
+	var asteroid_pos = Vector2(x,y)
+	print(asteroid_pos)
+	print(Global.asteroid_properties[size].textures.size())
+	return asteroid_pos
+
 
 #########################
 #

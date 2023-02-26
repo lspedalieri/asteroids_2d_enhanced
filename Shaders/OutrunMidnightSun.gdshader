@@ -75,7 +75,7 @@ void fragment()
             col = vec3(1.0, 0.3, 0.0);
             float sunVal = sun(sunUV, battery);
             
-            col = mix(col, vec3(1.0, 0.4, 0.1), sunUV.y * 2.0 + 0.2);
+            col = mix(col, vec3(1.0, 0.1, 0.0), sunUV.y * 2.0 + 0.2);
             col = mix(vec3(0.0, 0.0, 0.0), col, sunVal);
             
         }

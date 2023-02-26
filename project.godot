@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "ColorRect",
+"class": "GSky",
+"language": "GDScript",
+"path": "res://scripts/resize_background.gd"
+} ]
+_global_script_class_icons={
+"GSky": ""
+}
+
 [application]
 
 config/name="asteroids2d"

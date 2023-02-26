@@ -46,6 +46,10 @@ margin_bottom = 1080.0
 texture = ExtResource( 2 )
 stretch_mode = 1
 
+[node name="StarContainer" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
 [node name="Title" type="Sprite" parent="."]
 position = Vector2( 960, 30 )
 scale = Vector2( 0.001, 0.001 )

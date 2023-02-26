@@ -142,10 +142,12 @@ var asteroid_properties = {
 						"res://audio/scifi/explosionCrunch_003.ogg", 
 						"res://audio/scifi/explosionCrunch_004.ogg"
 					],
+			 'size':0.8,
 			 'life': 40,
 			 'damage': 40,
 			 'points': 10,
-			 'drop_chance': 0.5
+			 'drop_chance': 0.5,
+			 'tail':"res://art/fireball.png",
 			},
 	'med' : {'textures': [
 						'res://art/asteroids/asteroid-med-1.png',
@@ -163,10 +165,12 @@ var asteroid_properties = {
 						"res://audio/scifi/explosionCrunch_003.ogg", 
 						"res://audio/scifi/explosionCrunch_004.ogg"
 					],
+			 'size':0.5,
 			 'life': 30,
 			 'damage': 25,
 			 'points': 15,
-			 'drop_chance': 0.6
+			 'drop_chance': 0.6,
+			 'tail':"res://art/fireball.png",
 			},
 	'sm' : {'textures': [
 					   'res://art/asteroids/asteroid-small-1.png',
@@ -184,10 +188,12 @@ var asteroid_properties = {
 						"res://audio/scifi/explosionCrunch_003.ogg", 
 						"res://audio/scifi/explosionCrunch_004.ogg"
 					],
+			 'size':0.3,
 			 'life': 20,
 			 'damage': 15,
 			 'points': 20,
-			 'drop_chance': 0.8
+			 'drop_chance': 0.8,
+			 'tail':"res://art/fireball.png",
 			},
 	'tiny' : {'textures': [
 					   'res://art/asteroids/asteroid-tiny-1.png',
@@ -203,10 +209,12 @@ var asteroid_properties = {
 						"res://audio/scifi/explosionCrunch_002.ogg", 
 						"res://audio/scifi/explosionCrunch_003.ogg", 
 						"res://audio/scifi/explosionCrunch_004.ogg"],
+			 'size':0.1,
 			 'life': 10,
 			 'damage': 10,
 			 'points': 40,
-			 'drop_chance': 0.95
+			 'drop_chance': 0.95,
+			 'tail':"res://art/fireball.png",
 			}
 }
 
@@ -230,6 +238,29 @@ var powerup_lifetime = 15
 #title letters
 var letters_path = "res://art/labels/letters/"
 var letters = []
+var title_coordinates_new = [
+	{"letter" : "A", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "S", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "T", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "E", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "R", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "O", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "I", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "D", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "S", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "SPACE"},
+	{"letter" : "O", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "N", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "S", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "T", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "E", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "R", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "O", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "I", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "D", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+	{"letter" : "S", "start_coords" : "random_outside", "end_coords_y" : 165, "method" : "TRANS_SINE"},
+]
+
 var title_coordinates = [
 	{"letter" : "A", "start_coords" : Vector2(120, 200), "end_coords" : Vector2(120, 165), "method" : "TRANS_SINE", "time" : 3},
 	{"letter" : "S", "start_coords" : Vector2(180, 200), "end_coords" : Vector2(180, 165), "method" : "TRANS_SINE", "time" : 3},
@@ -251,7 +282,6 @@ var title_coordinates = [
 	{"letter" : "D", "start_coords" : Vector2(1180, 200), "end_coords" : Vector2(1180, 165), "method" : "TRANS_SINE", "time" : 3},
 	{"letter" : "S", "start_coords" : Vector2(1240, 200), "end_coords" : Vector2(1240, 165), "method" : "TRANS_SINE", "time" : 3},
 ]
-
 
 #########################################################
 #
